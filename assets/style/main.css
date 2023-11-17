@@ -1,0 +1,12 @@
+:root {
+	--background: #222E3C;
+	--headers: #F0F3F5;
+	--paragraphs: #D7C9AA;
+	--accent1: #0B7A75;
+	--accent2: #7B2D26;
+}
+
+html, body, div#__nuxt {
+    height: 100% !important;
+    background: var(--background);
+}
