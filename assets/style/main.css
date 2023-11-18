@@ -9,4 +9,6 @@
 html, body, div#__nuxt {
     height: 100% !important;
     background: var(--background);
+	color: var(--paragraphs);
+	font-family: Arial, Helvetica, sans-serif;
 }
