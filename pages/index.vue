@@ -37,20 +37,18 @@
             <h1>
                 <p class="typing-effect">Toni Kuikka</p>
             </h1>
-            <div id="navigator">
-                <button @click="hideMenu = !hideMenu">
-                    <span class="material-icons mobile-only">
-                        menu
-                    </span>
-                </button>
-                <span :class="{'hidden': hideMenu}">
-                    <button v-for="tab of tabs" @click="selectedTab = tab"
-                    :disabled="tab === selectedTab">
-                        {{ tab }}
-                    </button>
+            <button id="toggle-menu" class="mobile-only" @click="hideMenu = !hideMenu"
+            :class="{'active':!hideMenu}">
+                <span class="material-icons">
+                    menu
                 </span>
-            </div>
+            </button>
+            <navigator :buttons="tabs" :selected="selectedTab" class="desktop-only"
+            @button-click="selectedTab=$event.button"></navigator>
         </header>
+        <navigator :buttons="tabs" :selected="selectedTab" :direction="'column'"
+        :hidden="hideMenu" @button-click="selectedTab=$event.button" class="mobile-only">
+        </navigator>
         <div id="page-content" ref="page-content">
             <div class="page-tabs" v-for="tab of tabs">
                 <p>{{tab}}</p>
@@ -69,42 +67,41 @@ Suspendisse eu tristique mi. Donec vel massa eu justo tincidunt congue nec sit a
 <style scoped>
     header {
         display: flex;
-        padding: 0 10px;
         align-items: center;
         white-space: nowrap;
         height: 100px;
     }
     h1 {
+        margin-left: 10px;
         color: var(--headers);
         font-family: 'Courier New', Courier, monospace;
         width: fit-content;
     }
-    div#navigator {
-        margin-left: auto;
-        height:100%;
-        display:flex;
-    }
-    div#navigator button {
-        height: 100%;
-        padding: 30px;
-        background: none;
-        color: var(--paragraphs);
-        border: none;
-        transition: 0.3s;
-    }
-    div#navigator button:not(:disabled):hover {
-        background: var(--accent2);
-    }
-    div#navigator button:disabled {
-        background: var(--accent1);
-        color: var(--headers);
-    }
+    header
     p.typing-effect {
         width: 0;
         white-space: nowrap;
         overflow: hidden;
         border-right: 5px solid var(--accent1);
         animation: typing 2s steps(11) forwards;
+    }
+    button#toggle-menu {
+        height: 100%;
+        padding: 30px;
+        background: none;
+        color: var(--paragraphs);
+        border: none;
+        transition: 0.3s;
+        margin-left: auto;
+    }
+    button#toggle-menu:not(:disabled) {
+        cursor: pointer;
+    }
+    button#toggle-menu:not(:disabled):hover {
+        background: var(--accent2);
+    }
+    button#toggle-menu.active {
+        background: var(--accent1);
     }
     div#page-content {
         width: 100%;
@@ -123,9 +120,6 @@ Suspendisse eu tristique mi. Donec vel massa eu justo tincidunt congue nec sit a
         overflow-y: auto;
         position: sticky;
     }
-    button:not(:disabled) {
-        cursor: pointer;
-    }
 
     @keyframes typing {
         from { width: 0 }
@@ -135,12 +129,15 @@ Suspendisse eu tristique mi. Donec vel massa eu justo tincidunt congue nec sit a
     #navigator .hidden {
         display:none;
     }
+    .desktop-only {
+        display: none !important;
+    }
     @media (min-width: 640px) {
         .mobile-only {
-            visibility: hidden;
+            display: none !important;
         }
-        #navigator .hidden {
-            display: initial;
+        .desktop-only {
+            display:flex !important;
         }
     }
 </style>
