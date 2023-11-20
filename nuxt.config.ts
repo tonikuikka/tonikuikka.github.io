@@ -15,6 +15,25 @@ export default defineNuxtConfig({
             ]
         }
     },
-    modules: [],
-    css: ['~/assets/style/main.css']
+    modules: [
+        '@nuxtjs/i18n',
+    ],
+    css: ['~/assets/style/main.css'],
+    i18n: {
+		locales: [
+			{ code: 'fi', iso: 'fi', name: 'Suomi', file: 'fi.yaml' },
+			{ code: 'en', iso: 'en', name: 'English', file: 'en.yaml' },
+		],
+        defaultLocale: 'en',
+		strategy: 'prefix_and_default',
+		langDir: 'lang',
+		detectBrowserLanguage: false,
+		compilation: {
+			jit: false,
+			strictMessage: false,
+		},
+		bundle: {
+			runtimeOnly: true,
+		}
+	},
 })

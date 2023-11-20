@@ -64,6 +64,7 @@
             <div class="page-tabs" v-for="tab of tabs">
                 <div class="test" style="padding:2%;">
                     <p>{{tab}}</p>
+                    <p> {{ $t('test') }}</p>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ex libero, ullamcorper sit amet eros sit amet, convallis facilisis nisi. Aliquam mauris ipsum, hendrerit a aliquam sed, euismod consectetur mi. Morbi sed magna sit amet dui varius aliquam. Sed ultricies libero et libero dapibus feugiat. Sed scelerisque orci ac porta pretium. Integer et eros sem. Pellentesque pretium lorem velit, sed aliquam magna tristique nec. Integer non est suscipit metus congue mollis sodales quis lectus. Morbi at malesuada libero, id faucibus mi. Cras eu erat fringilla, imperdiet tellus id, dapibus velit. Duis malesuada sagittis diam id rutrum. Duis vel elit eu est faucibus bibendum ut et augue. Fusce in est non erat fermentum egestas. Proin consectetur ex quis elit dignissim interdum.
 
