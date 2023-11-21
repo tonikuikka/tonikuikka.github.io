@@ -34,11 +34,15 @@
 
 <template>
     <Transition>
-        <div id="navigator" v-show="!hidden" :style="{'flex-direction': direction}">
+        <div id="navigator" v-show="!hidden" :class="{'on-columns': direction === 'column'}">
             <button v-for="button of buttons" :disabled="button === selected"
-            :style="{'text-align': direction === 'column' ? 'left' : 'center'}"
             @click="$emit('buttonClick', {button: button})">
                 {{ button }}
+            </button>
+            <button v-for="locale of $i18n.locales" v-show="locale.code !== $i18n.locale"
+            @click="$i18n.setLocale(locale.code)">
+                <img class="flag-icon" :src='`/flags/${locale.code}.svg`'/>
+                {{ locale.name }}
             </button>
         </div>
     </Transition>
@@ -47,8 +51,19 @@
 <style scoped>
     div#navigator {
         margin-left: auto;
-        height:100%;
-        display:flex;
+        height: 100%;
+        width: 100%;
+        display: flex;
+    }
+    div#navigator:not(.on-columns) {
+        flex-direction: row;
+        width: initial;
+        text-align: center;
+    }
+    div#navigator.on-columns {
+        flex-direction: column;
+        width: 100%;
+        text-align: left;
     }
     div#navigator button {
         height: 100%;
@@ -77,10 +92,11 @@
     .v-leave-to {
         opacity: 0;
     }
+    img.flag-icon {
+        margin-right: 5px;
+        width: 25px;
+    }
     @media (min-width: 640px) {
-        div#navigator {
-            flex-direction:row;
-        }
         div#navigator .hidden {
             display: initial;
         }

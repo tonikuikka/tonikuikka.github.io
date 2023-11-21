@@ -21,8 +21,8 @@ export default defineNuxtConfig({
     css: ['~/assets/style/main.css'],
     i18n: {
 		locales: [
-			{ code: 'fi', iso: 'fi', name: 'Suomi', file: 'fi.yaml' },
-			{ code: 'en', iso: 'en', name: 'English', file: 'en.yaml' },
+			{ code: 'fi', iso: 'fi', name: 'Suomeksi', file: 'fi.yaml' },
+			{ code: 'en', iso: 'en', name: 'In English', file: 'en.yaml' },
 		],
         defaultLocale: 'en',
 		strategy: 'prefix_and_default',
