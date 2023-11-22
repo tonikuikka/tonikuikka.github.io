@@ -22,7 +22,7 @@
 			
 			}
 		},
-		emits: ['buttonClick'],
+		emits: ['navigatorEvent'],
 		setup(props, context) {
 		},
 		mounted() {
@@ -36,11 +36,11 @@
     <Transition>
         <div id="navigator" v-show="!hidden" :class="{'on-columns': direction === 'column'}">
             <button v-for="button of buttons" :disabled="button === selected"
-            @click="$emit('buttonClick', {button: button})">
+            @click="$emit('navigatorEvent', {type: 'changePage', button: button})">
                 {{ button }}
             </button>
             <button v-for="locale of $i18n.locales" v-show="locale.code !== $i18n.locale"
-            @click="$i18n.setLocale(locale.code)">
+            @click="$emit('navigatorEvent', {type: 'switchLanguage', lang: locale.code})">
                 <img class="flag-icon" :src='`/flags/${locale.code}.svg`'/>
                 {{ locale.name }}
             </button>
@@ -72,6 +72,8 @@
         color: var(--paragraphs);
         border: none;
         transition: 0.3s;
+        display: flex;
+        align-items: center;
     }
     div#navigator button:not(:disabled):hover {
         background: var(--accent2);
@@ -93,7 +95,7 @@
         opacity: 0;
     }
     img.flag-icon {
-        margin-right: 5px;
+        margin-right: 10px;
         width: 25px;
     }
     @media (min-width: 640px) {

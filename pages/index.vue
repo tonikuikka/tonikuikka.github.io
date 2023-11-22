@@ -38,6 +38,17 @@
                     this.selectedTab = this.tabs[index];
                 }
 			},
+            _onNavigatorEvent: function(event, options={}) {
+                switch (event.type) {
+                    case 'changePage':
+                        this.selectedTab = event.button;
+                        break;
+                    case 'switchLanguage':
+                        this.$i18n.setLocale(event.lang);
+                        break;
+                }
+                if (options.closeAfter) this.hideMenu = true;
+            }
         }
     }
 </script>
@@ -55,10 +66,10 @@
                 </span>
             </button>
             <navigator :buttons="tabs" :selected="selectedTab" class="desktop-only"
-            @button-click="selectedTab=$event.button"></navigator>
+            @navigator-event="_onNavigatorEvent($event)"></navigator>
         </header>
         <navigator :buttons="tabs" :selected="selectedTab" :direction="'column'"
-        :hidden="hideMenu" @button-click="selectedTab=$event.button; hideMenu=true"
+        :hidden="hideMenu" @navigator-event="_onNavigatorEvent($event, {closeAfter: true})"
         class="mobile-only"></navigator>
         <div id="page-content" ref="page-content" @scrollend="onScrollEnd">
             <div class="page-tabs" v-for="tab of tabs">
@@ -85,7 +96,7 @@ Suspendisse eu tristique mi. Donec vel massa eu justo tincidunt congue nec sit a
                     alt="Flag Counter">
                 </a>-->
             </div>
-            <div class="test2">
+            <div>
                 <ul>
                     <li v-for="tab of tabs">
                         <button @click="selectedTab=tab">
@@ -127,8 +138,9 @@ Suspendisse eu tristique mi. Donec vel massa eu justo tincidunt congue nec sit a
     header {
         display: flex;
         align-items: center;
-        white-space: nowrap;
+        flex-wrap: nowrap;
         height: 100px;
+        overflow: hidden;
     }
     h1, h2 {
         margin-left: 10px;
@@ -209,14 +221,14 @@ Suspendisse eu tristique mi. Donec vel massa eu justo tincidunt congue nec sit a
         justify-content:space-evenly
     }
     footer > * {
-        flex-grow: 1;
-        flex-basis: 0;
+        flex: 1 1 0px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
     ul {
         list-style-type: none;
+        padding: 0;
     }
     footer button {
         background: none;
@@ -243,10 +255,7 @@ Suspendisse eu tristique mi. Donec vel massa eu justo tincidunt congue nec sit a
         flex-direction: column;
     }
     div#social-media p {
-        font-size: 90%;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
+        font-size: 80%;
     }
     div#footer-copyright {
         align-self: flex-end;
