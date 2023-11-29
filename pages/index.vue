@@ -3,12 +3,17 @@
         data() {
             return {
                 tabs: [
-                    'test1',
+                    'mainPage',
                     'test2',
                     'test3'
                 ] as string[],
                 selectedTab: 'test1' as string,
-                hideMenu: true
+                hideMenu: true,
+                skills: [
+                    {name: 'Javascript', level: 5, description: ""},
+                    {name: 'Python', level: 4, description: ""},
+                    {name: 'C', level: 1, description: ""},
+                ]
             }
         },
         watch: {
@@ -48,6 +53,10 @@
                         break;
                 }
                 if (options.closeAfter) this.hideMenu = true;
+            },
+            _footerNavClick: function(tab: string) {
+                this.selectedTab = tab;
+                window.scrollTo(0,0);
             }
         }
     }
@@ -72,17 +81,36 @@
         :hidden="hideMenu" @navigator-event="_onNavigatorEvent($event, {closeAfter: true})"
         class="mobile-only"></navigator>
         <div id="page-content" ref="page-content" @scrollend="onScrollEnd">
-            <div class="page-tabs" v-for="tab of tabs">
-                <div class="test" style="padding:2%;">
-                    <p>{{tab}}</p>
-                    <p> {{ $t('test') }}</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ex libero, ullamcorper sit amet eros sit amet, convallis facilisis nisi. Aliquam mauris ipsum, hendrerit a aliquam sed, euismod consectetur mi. Morbi sed magna sit amet dui varius aliquam. Sed ultricies libero et libero dapibus feugiat. Sed scelerisque orci ac porta pretium. Integer et eros sem. Pellentesque pretium lorem velit, sed aliquam magna tristique nec. Integer non est suscipit metus congue mollis sodales quis lectus. Morbi at malesuada libero, id faucibus mi. Cras eu erat fringilla, imperdiet tellus id, dapibus velit. Duis malesuada sagittis diam id rutrum. Duis vel elit eu est faucibus bibendum ut et augue. Fusce in est non erat fermentum egestas. Proin consectetur ex quis elit dignissim interdum.
-
-Vivamus nec justo aliquet, feugiat ipsum non, pulvinar nunc. Phasellus quis tincidunt est. Vestibulum enim ex, ultrices sed congue id, laoreet in augue. Vestibulum elit mauris, imperdiet eu elit ut, euismod pharetra est. Maecenas id pharetra risus. Vestibulum vestibulum ex ante, vehicula varius enim imperdiet vel. Suspendisse potenti. In pretium leo nec felis sollicitudin posuere. Fusce vel nisl vel massa mattis blandit. Fusce eu mauris ut nunc sollicitudin pellentesque sit amet et nulla.
-
-Suspendisse eu tristique mi. Donec vel massa eu justo tincidunt congue nec sit amet velit. Vestibulum a orci id turpis fringilla semper. Aliquam varius turpis quis ultricies egestas. Cras eu laoreet dui. Mauris in scelerisque mi. Aenean tincidunt non tellus vel viverra. Mauris eu rutrum ipsum, at vehicula enim. Phasellus posuere velit dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tellus lacus, tincidunt accumsan enim ac, auctor porttitor dolor. Donec nisl nulla, ultrices rutrum purus et, molestie dapibus arcu. Mauris iaculis placerat risus sit amet imperdiet. Aliquam eget posuere elit, ac consectetur eros.
-                </p>
+            <div class="page-tabs" v-for="(tab, index) in tabs">
+                <div v-if="index===0">
+                    <div id="frontpage-header">
+                        <img id="toni" src="~/assets/img/toni.jpg"/>
+                        <div>
+                            <h1>
+                                {{ $t('fullStackDeveloper') }}
+                            </h1>
+                            <div id="programming-lang-icons">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"/>
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg"/>
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"/>
+                            </div>
+                            <h2>
+                                <span class="material-icons">
+                                    location_on
+                                </span>
+                                {{ "Oulu, "+$t('finland') }}
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div v-else-if="index===1">
+                    <div v-for="skill of skills">
+                        <skill-bar :skill="skill"></skill-bar>
+                    </div>
+                </div>
+                <div v-else>
+                    <p>asd</p>
                 </div>
             </div>
         </div>
@@ -99,8 +127,8 @@ Suspendisse eu tristique mi. Donec vel massa eu justo tincidunt congue nec sit a
             <div>
                 <ul>
                     <li v-for="tab of tabs">
-                        <button @click="selectedTab=tab">
-                            <b>{{ tab }}</b>
+                        <button @click="_footerNavClick(tab)">
+                            <b>{{ $t(tab) }}</b>
                         </button>
                     </li>
                 </ul>
@@ -110,7 +138,7 @@ Suspendisse eu tristique mi. Donec vel massa eu justo tincidunt congue nec sit a
                     <p>
                         <a href="https://github.com/tonikuikka/tonikuikka.github.io"
                         class="fa fa-github" target="_blank"></a>
-                        The repository of this page is available on GitHub.
+                        {{ $t('availableOnGitHub') }}
                     </p>
                 </div>
                 <div>
@@ -141,6 +169,7 @@ Suspendisse eu tristique mi. Donec vel massa eu justo tincidunt congue nec sit a
         flex-wrap: nowrap;
         height: 100px;
         overflow: hidden;
+        margin-left: 2%;
     }
     h1, h2 {
         margin-left: 10px;
@@ -261,6 +290,39 @@ Suspendisse eu tristique mi. Donec vel massa eu justo tincidunt congue nec sit a
         align-self: flex-end;
         margin-top: auto;
         font-size: 90%;
+    }
+    div#frontpage-header {
+        display: flex;
+        flex-wrap: nowrap;
+        text-align: center;
+    }
+    div#frontpage-header > div {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    div#frontpage-header h1 {
+        font-size: 300%;
+    }
+    div#frontpage-header h2 {
+        font-size: 200%;
+    }
+    img#toni {
+        width: 30%;
+        object-fit: cover;
+    }
+    div#programming-lang-icons {
+        display: flex;
+        justify-content: center;
+    }
+    div#programming-lang-icons > img {
+        width: 10%;
+        padding: 1%;
+    }
+    div.page-tabs > div {
+        padding: 2%;
     }
     @media (min-width: 640px) {
         .mobile-only {

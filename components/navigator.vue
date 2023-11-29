@@ -17,18 +17,7 @@
                 default: false
             }
 		},
-		data() {
-			return {
-			
-			}
-		},
-		emits: ['navigatorEvent'],
-		setup(props, context) {
-		},
-		mounted() {
-		},
-		methods: {
- 		}
+		emits: ['navigatorEvent']
 	}
 </script>
 
@@ -37,7 +26,7 @@
         <div id="navigator" v-show="!hidden" :class="{'on-columns': direction === 'column'}">
             <button v-for="button of buttons" :disabled="button === selected"
             @click="$emit('navigatorEvent', {type: 'changePage', button: button})">
-                {{ button }}
+                {{ $t(button) }}
             </button>
             <button v-for="locale of $i18n.locales" v-show="locale.code !== $i18n.locale"
             @click="$emit('navigatorEvent', {type: 'switchLanguage', lang: locale.code})">
