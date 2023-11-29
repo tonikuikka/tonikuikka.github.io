@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     },
     modules: [
         '@nuxtjs/i18n',
+        '@nuxtjs/google-fonts'
     ],
     css: ['~/assets/style/main.css'],
     i18n: {
@@ -36,4 +37,11 @@ export default defineNuxtConfig({
 			runtimeOnly: true,
 		}
 	},
+    googleFonts: {
+        families: {
+            'Roboto': true,
+            'Aldrich': true,
+            'Material Symbols Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200': true
+        }
+    }
 })

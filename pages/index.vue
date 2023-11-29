@@ -85,22 +85,26 @@
                 <div v-if="index===0">
                     <div id="frontpage-header">
                         <img id="toni" src="~/assets/img/toni.jpg"/>
-                        <div>
-                            <h1>
-                                {{ $t('fullStackDeveloper') }}
-                            </h1>
+                        <div id="frontpage-header-title-container">
+                            <div>
+                                <h1>
+                                    {{ $t('fullStackDeveloper') }}
+                                </h1>
+                            </div>
                             <div id="programming-lang-icons">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"/>
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg"/>
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"/>
                             </div>
-                            <h2>
+                            <div>
                                 <span class="material-icons">
                                     location_on
                                 </span>
-                                {{ "Oulu, "+$t('finland') }}
-                            </h2>
+                                <h2>
+                                    {{ "Oulu, "+$t('finland') }}
+                                </h2>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -174,8 +178,10 @@
     h1, h2 {
         margin-left: 10px;
         color: var(--headers);
-        font-family: 'Courier New', Courier, monospace;
         width: fit-content;
+    }
+    h1, h2, h1 *, h2 * {
+        font-family: 'Aldrich', 'Courier New', Courier, monospace;
     }
     p.typing-effect {
         white-space: nowrap;
@@ -296,10 +302,15 @@
         flex-wrap: nowrap;
         text-align: center;
     }
-    div#frontpage-header > div {
+    div#frontpage-header-title-container {
         flex: 1;
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    div#frontpage-header-title-container > div {
+        display: flex;
         justify-content: center;
         align-items: center;
     }
@@ -312,10 +323,6 @@
     img#toni {
         width: 30%;
         object-fit: cover;
-    }
-    div#programming-lang-icons {
-        display: flex;
-        justify-content: center;
     }
     div#programming-lang-icons > img {
         width: 10%;

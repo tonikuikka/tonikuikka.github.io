@@ -9,6 +9,7 @@
     "deploy": "nuxt generate && gh-pages --dotfiles -d .output/public"
   },
   "devDependencies": {
+    "@nuxtjs/google-fonts": "^3.1.0",
     "@nuxtjs/i18n": "^8.0.0-rc.5",
     "gh-pages": "^5.0.0",
     "nuxt": "^3.1.2",
