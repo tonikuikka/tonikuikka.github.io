@@ -63,6 +63,7 @@
         transition: 0.3s;
         display: flex;
         align-items: center;
+        font-size: 1.125rem;
     }
     div#navigator button:not(:disabled):hover {
         background: var(--accent2);

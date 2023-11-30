@@ -7,7 +7,7 @@
                     'test2',
                     'test3'
                 ] as string[],
-                selectedTab: 'test1' as string,
+                selectedTab: 'mainPage' as string,
                 hideMenu: true,
                 skills: [
                     {name: 'Javascript', level: 5, description: ""},
@@ -20,6 +20,10 @@
             selectedTab: function() {
                 this.changePage();
             }
+        },
+        mounted() {
+            window.addEventListener('resize', this._toggleTitleVisibility);
+            this._toggleTitleVisibility();
         },
         methods: {
             changePage: function() {
@@ -57,6 +61,18 @@
             _footerNavClick: function(tab: string) {
                 this.selectedTab = tab;
                 window.scrollTo(0,0);
+            },
+            _toggleTitleVisibility: function() {
+                console.log("AAAAAAAAA");
+                const element = this.$refs['title'] as HTMLElement;
+                if (!element) return;
+
+                const className = "hidden";
+                element.classList.remove(className);
+
+                if (element.scrollWidth > element.clientWidth) {
+                    element.classList.add(className);
+                }
             }
         }
     }
@@ -65,9 +81,11 @@
 <template>
     <div id="page-wrapper">
         <header>
-            <h1>
-                <p class="typing-effect">Toni Kuikka</p>
-            </h1>
+            <div ref="title">
+                <h1>
+                    <p class="typing-effect">Toni Kuikka</p>
+                </h1>
+            </div>
             <button id="toggle-menu" class="mobile-only" @click="hideMenu = !hideMenu"
             :class="{'active':!hideMenu}">
                 <span class="material-icons">
@@ -107,11 +125,20 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <p>
+                            {{ $t('aboutMe') }}
+                        </p>
+                        <p>
+                            {{ $t('aboutPage') }}
+                        </p>
+                    </div>
                 </div>
                 <div v-else-if="index===1">
-                    <div v-for="skill of skills">
+                    <p>lalala</p>
+                    <!--<div v-for="skill of skills">
                         <skill-bar :skill="skill"></skill-bar>
-                    </div>
+                    </div>-->
                 </div>
                 <div v-else>
                     <p>asd</p>
@@ -175,8 +202,12 @@
         overflow: hidden;
         margin-left: 2%;
     }
+    header > div:first-child {
+        flex: 1;
+        overflow: hidden;
+    }
     h1, h2 {
-        margin-left: 10px;
+        margin: 0;
         color: var(--headers);
         width: fit-content;
     }
@@ -218,6 +249,11 @@
         display: flex;
         scroll-snap-type: x mandatory;
     }
+    div#page-content p {
+        padding: 0 1%;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+    }
     div.page-tabs {
         min-width: 100%;
         max-width: 100%;
@@ -234,7 +270,7 @@
         to { width: 100%; }
     }
 
-    #navigator .hidden {
+    .hidden {
         display:none;
     }
     .desktop-only {
@@ -264,6 +300,7 @@
     ul {
         list-style-type: none;
         padding: 0;
+        text-align: center;
     }
     footer button {
         background: none;
@@ -313,6 +350,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 1rem 0;
     }
     div#frontpage-header h1 {
         font-size: 300%;

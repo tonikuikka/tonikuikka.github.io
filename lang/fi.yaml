@@ -1,6 +1,13 @@
 ---
+aboutMe: >
+  Moi ja tervetuloa kotisivuilleni! Olen Toni Kuikka, Oulussa asuva Full Stack -kehittäjä sekä Tampereen yliopiston ITC-tiedekunnan suurten tietoaineistojen
+  analysoinnin koulutusohjelmasta valmistunut maisteri. Minulle on kertynyt monipuolista osaamista ohjelmoinnista, data- sekä tilastotieteestä, ja olen aina
+  valmis käyttämään asiantuntemustani luodakseni jotain mahtavaa.
+aboutPage: >
+  Tältä sivulta löytyy yhteenveto osaamisestani. Olen toteuttanut kaiken itse Nuxt.js:llä ja Typescriptillä. Lisäksi sivu pyörii GitHub Pages -palvelimella, ja
+  koko projektin tietovarastoon pääsee alapuolelta löytyvästä linkistä. Yksityiskohtaisempia tietoja minulta voi kysellä esimerkiksi sosiaalisen median kautta!
 advancedBeginner: Edistynyt
-availableOnGitHub: Tämän sivusto löytyy myös GitHubista.
+availableOnGitHub: Tämä sivusto löytyy myös GitHubista.
 competent: Kykenevä
 expert: Taitaja
 finland: Suomi
