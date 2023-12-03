@@ -4,14 +4,27 @@
             return {
                 tabs: [
                     'mainPage',
-                    'test2',
+                    'skills',
                     'test3'
                 ] as string[],
-                selectedTab: 'mainPage' as string,
+                selectedTab: 0 as number,
                 hideMenu: true,
                 skills: [
                     {name: 'Javascript', level: 5, description: ""},
+                    {name: 'HTML', level: 5, description: ""},
+                    {name: 'CSS', level: 5, description: ""},
+                    {name: 'Nuxt.js', level: 5, description: ""},
+                    {name: 'Vue.js', level: 5, description: ""},
+                    {name: 'Typescript', level: 4, description: ""},
                     {name: 'Python', level: 4, description: ""},
+                    {name: 'SQL', level: 3, description: ""},
+                    {name: 'PHP', level: 3, description: ""},
+                    {name: 'R', level: 3, description: ""},
+                    {name: 'Git', level: 3, description: ""},
+                    {name: 'REST API', level: 3, description: ""},
+                    {name: 'Azure', level: 3, description: ""},
+                    {name: 'Java', level: 2, description: ""},
+                    {name: 'Scala', level: 2, description: ""},
                     {name: 'C', level: 1, description: ""},
                 ]
             }
@@ -29,11 +42,10 @@
             changePage: function() {
                 const container = this.$refs['page-content'] as HTMLElement;
                 if (!container) return;
-                const index = this.tabs.indexOf(this.selectedTab);
 
                 container.scrollTo({
                     top: container.scrollTop,
-                    left: (container.scrollWidth / this.tabs.length) * index,
+                    left: (container.scrollWidth / this.tabs.length) * this.selectedTab,
                     behavior: 'smooth' as ScrollBehavior
                 });
             },
@@ -43,14 +55,14 @@
 				const index = Math.round(
                     (container.scrollLeft/container.scrollWidth)*this.tabs.length
                 );
-                if (index !== this.tabs.indexOf(this.selectedTab)) {
-                    this.selectedTab = this.tabs[index];
+                if (index !== this.selectedTab) {
+                    this.selectedTab = index;
                 }
 			},
             _onNavigatorEvent: function(event, options={}) {
                 switch (event.type) {
                     case 'changePage':
-                        this.selectedTab = event.button;
+                        this.selectedTab = event.index;
                         break;
                     case 'switchLanguage':
                         this.$i18n.setLocale(event.lang);
@@ -58,12 +70,11 @@
                 }
                 if (options.closeAfter) this.hideMenu = true;
             },
-            _footerNavClick: function(tab: string) {
+            _footerNavClick: function(tab: number) {
                 this.selectedTab = tab;
                 window.scrollTo(0,0);
             },
             _toggleTitleVisibility: function() {
-                console.log("AAAAAAAAA");
                 const element = this.$refs['title'] as HTMLElement;
                 if (!element) return;
 
@@ -104,6 +115,8 @@
                     <div id="frontpage-header">
                         <img id="toni" src="~/assets/img/toni.jpg"/>
                         <div id="frontpage-header-title-container">
+                            <a href="https://github.com/tonikuikka/tonikuikka.github.io"
+                            :title="$t('availableOnGitHub')" class="fa fa-github" target="_blank"></a>
                             <div>
                                 <h1>
                                     {{ $t('fullStackDeveloper') }}
@@ -119,7 +132,7 @@
                                 <span class="material-icons">
                                     location_on
                                 </span>
-                                <h2>
+                                <h2 class="location">
                                     {{ "Oulu, "+$t('finland') }}
                                 </h2>
                             </div>
@@ -129,16 +142,21 @@
                         <p>
                             {{ $t('aboutMe') }}
                         </p>
+                        <span class="material-icons between-p">
+                            lightbulb
+                        </span>
                         <p>
                             {{ $t('aboutPage') }}
                         </p>
                     </div>
                 </div>
                 <div v-else-if="index===1">
-                    <p>lalala</p>
-                    <!--<div v-for="skill of skills">
-                        <skill-bar :skill="skill"></skill-bar>
-                    </div>-->
+                    <h2> {{ $t(tabs[index]) }}</h2>
+                    <p>
+                        <div v-for="skill of skills">
+                            <skill-bar :skill="skill"></skill-bar>
+                        </div>
+                    </p>
                 </div>
                 <div v-else>
                     <p>asd</p>
@@ -157,8 +175,8 @@
             </div>
             <div>
                 <ul>
-                    <li v-for="tab of tabs">
-                        <button @click="_footerNavClick(tab)">
+                    <li v-for="(tab, index) in tabs">
+                        <button @click="_footerNavClick(index)">
                             <b>{{ $t(tab) }}</b>
                         </button>
                     </li>
@@ -166,11 +184,7 @@
             </div>
             <div id="social-media">
                 <div>
-                    <p>
-                        <a href="https://github.com/tonikuikka/tonikuikka.github.io"
-                        class="fa fa-github" target="_blank"></a>
-                        {{ $t('availableOnGitHub') }}
-                    </p>
+                    <p> {{ $t('findMeOn') }} </p>
                 </div>
                 <div>
                     <a href="https://www.linkedin.com/in/toni-kuikka-2875141aa"
@@ -329,6 +343,9 @@
     div#social-media p {
         font-size: 80%;
     }
+    div#social-media > div:first-child {
+        color: var(--headers);
+    }
     div#footer-copyright {
         align-self: flex-end;
         margin-top: auto;
@@ -368,6 +385,21 @@
     }
     div.page-tabs > div {
         padding: 2%;
+    }
+    a.fa-github {
+        align-self: flex-end;
+        font-size: 2.25rem;
+    }
+    h2.location {
+        margin-left: 0.5rem;
+    }
+    span.material-icons.between-p {
+        font-size: 2rem;
+        color: var(--headers);
+        text-shadow: 0px -2px 25px var(--headers);
+        width: 100%;
+        text-align: center;
+        margin: 0.5rem 0;
     }
     @media (min-width: 640px) {
         .mobile-only {

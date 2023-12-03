@@ -68,22 +68,22 @@
         flex: 1;
     }
     div.indicators.novice {
-        background-color: red;
+        background-color: #f44336a6;
     }
     div.indicators.advancedBeginner {
-        background-color: orange;
+        background-color: #f4bb36a9;
     }
     div.indicators.competent {
-        background-color: yellow;
+        background-color: #f4e736a3;
     }
     div.indicators.proficient {
-        background-color: greenyellow;
+        background-color: #9ef436ac;
     }
     div.indicators.expert {
-        background-color: green;
+        background-color: #36f44fa1;
     }
     div.asd {
-        background-color: gray !important;
+        background-color: #dddddda9 !important;
     }
     .tooltip-text {
         visibility: hidden;

@@ -6,7 +6,8 @@
                 default: []
             },
             selected: {
-                type: String
+                type: Number,
+                default: 0
             },
             direction: {
                 type: String,
@@ -24,9 +25,9 @@
 <template>
     <Transition>
         <div id="navigator" v-show="!hidden" :class="{'on-columns': direction === 'column'}">
-            <button v-for="button of buttons" :disabled="button === selected"
-            @click="$emit('navigatorEvent', {type: 'changePage', button: button})">
-                {{ $t(button) }}
+            <button v-for="(button, index) in buttons" :disabled="index === selected"
+            @click="$emit('navigatorEvent', {type: 'changePage',  index: index})">
+                {{ $t(button as string) }}
             </button>
             <button v-for="locale of $i18n.locales" v-show="locale.code !== $i18n.locale"
             @click="$emit('navigatorEvent', {type: 'switchLanguage', lang: locale.code})">

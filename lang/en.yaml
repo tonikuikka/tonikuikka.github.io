@@ -5,14 +5,16 @@ aboutMe: >
   always up to employ my expertise to create something awesome.
 aboutPage: >
   On this page, one can find a summary of my skills. Everything is implemented by me using Nuxt.js and Typescript. In addition, the page is hosted by GitHub
-  Pages and the repository of the project is reachable from the link below. For detailed information, do not hesitate to contact me e.g. via social media!
+  Pages and the repository of the project is reachable from the link above. For detailed information, do not hesitate to contact me e.g. via social media.
 advancedBeginner: Advanced Beginner
-availableOnGitHub: The repository of this page is available on GitHub.
+availableOnGitHub: The repository of this page is available on GitHub
 competent: Competent
 expert: Expert
+findMeOn: Find me also on
 finland: Finland
 fullStackDeveloper: Full Stack Developer
 mainPage: Home
 novice: Novice
 proficient: Proficient
+skills: Skills
 test: Test
