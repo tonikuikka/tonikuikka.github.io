@@ -5,7 +5,7 @@
                 tabs: [
                     'mainPage',
                     'skills',
-                    'test3'
+                    'location'
                 ] as string[],
                 selectedTab: 0 as number,
                 hideMenu: true,
@@ -139,19 +139,15 @@
                         </div>
                     </div>
                     <div>
-                        <p>
-                            {{ $t('aboutMe') }}
-                        </p>
-                        <span class="material-icons between-p">
-                            lightbulb
-                        </span>
-                        <p>
-                            {{ $t('aboutPage') }}
-                        </p>
+                        <span class="material-icons between-p"> lightbulb </span>
+                        <p> {{ $t('aboutMe') }} </p>
+                        <span class="material-icons between-p"> lightbulb </span>
+                        <p> {{ $t('aboutPage') }} </p>
                     </div>
                 </div>
                 <div v-else-if="index===1">
                     <h2> {{ $t(tabs[index]) }}</h2>
+                    <p> {{ $t('mouseOver') }} </p>
                     <p>
                         <div v-for="skill of skills">
                             <skill-bar :skill="skill"></skill-bar>

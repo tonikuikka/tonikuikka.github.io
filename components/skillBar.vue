@@ -1,5 +1,14 @@
 <script lang="ts">
 	export default {
+        data() {
+            return {
+                tooltip: {
+                    left: '0px' as string,
+                    top: '0px' as string
+                },
+                showTooltip: false as boolean
+            }
+        },
 		props: {
             skill: {
                 type: Object,
@@ -20,23 +29,35 @@
                     case 5:
                         return 'expert';
                 }
+            },
+            _showTooltip: function(event: MouseEvent) {
+                this.tooltip.left = `${event.clientX}px`;
+                this.tooltip.top = `${event.clientY}px`;
+                this.showTooltip = true;
+            },
+            _hideTooltip: function() {
+                this.showTooltip = false;
             }
         }
 	}
 </script>
 
 <template>
-    <div class="skill-bar-container">
-        <span class="tooltip-text"><h2> {{ skill.name }}: {{ $t(_getClass(skill.level) as string) }}</h2></span>
-        <div>
+    <div class="skill-bar-container" ref="skill-bar" @mouseover="_showTooltip($event)" @mouseleave="_hideTooltip()">
+        <div @click.prevent>
             {{ skill.name }}
         </div>
         <div v-for="i in 5" :class="_getClass(skill.level), {'asd': i > skill.level }"
-        class="indicators"></div>
-        <div>
+        class="indicators" @click.prevent></div>
+        <div @click.prevent>
             {{ $t(_getClass(skill.level) as string) }}
         </div>
     </div>
+    <Transition>
+        <div class="tooltip" v-show="showTooltip" :style="tooltip">
+            <h2> {{ skill.name }}: {{ $t(_getClass(skill.level) as string) }} </h2>
+        </div>
+    </Transition>
 </template>
 
 <style scoped>
@@ -47,7 +68,7 @@
         cursor: pointer;
     }
     div.skill-bar-container > div {
-        margin: 1%;
+        margin: 1% 0;
         font-size: 120%;
     }
     div.skill-bar-container > div:not(:first-of-type) {
@@ -63,27 +84,29 @@
         overflow: hidden;
         text-overflow: ellipsis;
         text-align: center;
+        margin-left: 1%;
+        margin-right: 1%;
     }
     div.indicators {
         flex: 1;
     }
     div.indicators.novice {
-        background-color: #f44336a6;
+        background-color: #ab3b38;
     }
     div.indicators.advancedBeginner {
-        background-color: #f4bb36a9;
+        background-color: #ad8b37;
     }
     div.indicators.competent {
-        background-color: #f4e736a3;
+        background-color: #a8a438;
     }
     div.indicators.proficient {
-        background-color: #9ef436ac;
+        background-color: #75b337;
     }
     div.indicators.expert {
-        background-color: #36f44fa1;
+        background-color: #2eab47;
     }
     div.asd {
-        background-color: #dddddda9 !important;
+        background-color: #9da1a6 !important;
     }
     .tooltip-text {
         visibility: hidden;
@@ -94,16 +117,33 @@
         padding: 5px;
         position: absolute;
         z-index: 1;
-        bottom: 100%;
+        bottom: 50%;
         left: 50%;
         margin-left: -60px;
-        
-        /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
         opacity: 0;
         transition: opacity 1s;
     }
     .skill-bar-container:hover .tooltip-text {
         visibility: visible;
         opacity: 1;
+    }
+    div.tooltip {
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: fixed;
+        z-index: 1;
+    }
+    .v-enter-from,
+    .v-leave-to {
+        opacity: 0;
+    }
+    .v-enter-active {
+        transition: opacity 1s ease;
+    }
+    .v-leave-active {
+        transition: opacity 0.1s ease;
     }
 </style>
