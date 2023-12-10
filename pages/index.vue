@@ -154,8 +154,9 @@
                         </div>
                     </p>
                 </div>
-                <div v-else>
-                    <p>asd</p>
+                <div v-else-if="index===2">
+                    <h2> {{ $t(tabs[index]) }}</h2>
+                    <map-libre></map-libre>
                 </div>
             </div>
         </div>
