@@ -2,9 +2,12 @@
 	export default {
         data() {
             return {
-                map: null as any
+                map: null as any,
+                center: [0, 0] as number[],
+                markers: [] as any[]
             }
         },
+        emits: ['markerClick'],
         methods: {
             initMap: async function() {
                 const maplibregl = await import('maplibre-gl');
@@ -15,18 +18,17 @@
                         {
                             'type': 'Feature',
                             'properties': {
-                                'message': 'Oulu',
-                                'iconSize': [60, 60]
+                                'content': 'Oulu',
+                                'selected': true
                             },
                             'geometry': {
                                 'type': 'Point',
-                                'coordinates': [24.1240717, 65.199699]
+                                'coordinates': [25.5085619, 65.0141138]
                             }
                         }, {
                             'type': 'Feature',
                             'properties': {
-                                'message': 'Suonenjoki',
-                                'iconSize': [50, 50]
+                                'content': 'Suonenjoki'
                             },
                             'geometry': {
                                 'type': 'Point',
@@ -35,8 +37,7 @@
                         }, {
                             'type': 'Feature',
                             'properties': {
-                                'message': 'Tampere',
-                                'iconSize': [40, 40]
+                                'content': 'Tampere'
                             },
                             'geometry': {
                                 'type': 'Point',
@@ -45,8 +46,7 @@
                         }, {
                             'type': 'Feature',
                             'properties': {
-                                'message': 'Brno',
-                                'iconSize': [40, 40]
+                                'content': 'Brno, Czechia'
                             },
                             'geometry': {
                                 'type': 'Point',
@@ -55,8 +55,7 @@
                         }, {
                             'type': 'Feature',
                             'properties': {
-                                'message': 'Praha',
-                                'iconSize': [40, 40]
+                                'content': 'Prague, Czechia'
                             },
                             'geometry': {
                                 'type': 'Point',
@@ -65,39 +64,42 @@
                         }
                     ]
                 };
-
+                this.center = turf.center(geojson).geometry.coordinates || [0, 0];
                 this.map = new maplibregl.Map({
                     container: 'map',
-                    center: [0, 0],
-                    zoom: 1,
+                    center: this.center,
+                    zoom: 3,
+                    pitch: 75,
                     attributionControl: false,
                     style: 'https://api.maptiler.com/maps/f34804ce-f73d-45af-9dc4-7e99216d8a25/style.json?key=EjPwybiX5YV8l2YqurXi'
                 });
+                this.map.on('load', () => {
+                    for (const feature of geojson.features) {
+                        const marker = new maplibregl.Marker({color: "var(--accent2)", anchor:'bottom', offset: [-0.5, -2]})
+                        .setLngLat(feature.geometry.coordinates)
+                        .addTo(this.map);
+                        
+                        marker.addClassName('marker');
+                        if (feature.properties.selected) {
+                            marker.addClassName('selected');
+                        }
+                        const el = marker.getElement() as HTMLElement;
+                        el.addEventListener('click', () => { this.onMarkerClick(marker, feature.properties) });
 
-                geojson.features.forEach((marker) => {
-                    // create a DOM element for the marker
-                    const el = document.createElement('div');
-                    el.className = 'marker';
-                    el.style.backgroundImage =
-                        `url(https://placekitten.com/g/${
-                            marker.properties.iconSize.join('/')
-                        }/)`;
-                    el.style.width = `${marker.properties.iconSize[0]}px`;
-                    el.style.height = `${marker.properties.iconSize[1]}px`;
-
-                    el.addEventListener('click', () => {
-                        window.alert(marker.properties.message);
-                    });
-
-                    // add marker to map
-                    new maplibregl.Marker({element: el})
-                    .setLngLat(marker.geometry.coordinates)
-                    .addTo(this.map);
+                        this.markers.push(marker);
+                    }
                 });
-
-                console.log(turf.center(geojson));
-                this.map.jumpTo({center: turf.center(geojson).geometry.coordinates,zoom: 2,
-  pitch: 45});
+            },
+            onMarkerClick: function(marker: any, properties: any) {
+                this.map.flyTo({center: marker.getLngLat(), zoom: 6});
+                for (const m of this.markers) {
+                    m.removeClassName('selected');
+                }
+                marker.addClassName('selected');
+                this.$emit('markerClick', properties);
+            },
+            zoomOut: function() {
+                this.map.flyTo({center: this.center, zoom: 3, pitch: 75, bearing: 0});
             }
         },
         mounted() {
@@ -107,11 +109,49 @@
 </script>
 
 <template>
-    <div id="map"></div>
+    <div id="map-container">
+        <div id="map"></div>
+        <button :title="$t('zoomOutMap')" @click="zoomOut">
+            <span class="material-icons">
+                zoom_out_map
+            </span>
+        </button>
+    </div>
 </template>
 
-<style scoped>
+<style>
     @import 'maplibre-gl/dist/maplibre-gl.css';
+    .marker:hover {
+        cursor: pointer;
+    }
+    .marker:hover svg,
+    .marker.selected svg {
+        width: 150% !important;
+        height: 150% !important;
+    }
+</style>
+
+<style scoped>
+    div#map-container {
+        position: relative;
+        margin: 1rem 0;
+    }
+    div#map-container > button {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        cursor: pointer;
+        background: var(--paragraphs);
+        transition: background-color 0.3s;
+        border: none;
+        border-radius: 0.3rem;
+        box-shadow: 2px 2px 10px black;
+    }
+    div#map-container > button:hover {
+        background: var(--accent2);
+    }
     div#map {
         height: 300px;
     }

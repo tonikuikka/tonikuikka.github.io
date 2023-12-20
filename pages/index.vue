@@ -10,22 +10,22 @@
                 selectedTab: 0 as number,
                 hideMenu: true,
                 skills: [
-                    {name: 'Javascript', level: 5, description: ""},
-                    {name: 'HTML', level: 5, description: ""},
-                    {name: 'CSS', level: 5, description: ""},
-                    {name: 'Nuxt.js', level: 5, description: ""},
-                    {name: 'Vue.js', level: 5, description: ""},
-                    {name: 'Typescript', level: 4, description: ""},
-                    {name: 'Python', level: 4, description: ""},
+                    {name: 'Javascript', level: 3, description: ""},
+                    {name: 'HTML', level: 3, description: ""},
+                    {name: 'CSS', level: 3, description: ""},
+                    {name: 'Nuxt.js', level: 3, description: ""},
+                    {name: 'Vue.js', level: 3, description: ""},
+                    {name: 'Typescript', level: 3, description: ""},
+                    {name: 'Python', level: 3, description: ""},
                     {name: 'SQL', level: 3, description: ""},
                     {name: 'PHP', level: 3, description: ""},
                     {name: 'R', level: 3, description: ""},
                     {name: 'Git', level: 3, description: ""},
                     {name: 'REST API', level: 3, description: ""},
                     {name: 'Azure', level: 3, description: ""},
-                    {name: 'Java', level: 2, description: ""},
-                    {name: 'Scala', level: 2, description: ""},
-                    {name: 'C', level: 1, description: ""},
+                    {name: 'Java', level: 3, description: ""},
+                    {name: 'Scala', level: 3, description: ""},
+                    {name: 'C', level: 3, description: ""},
                 ]
             }
         },
@@ -84,6 +84,9 @@
                 if (element.scrollWidth > element.clientWidth) {
                     element.classList.add(className);
                 }
+            },
+            test: function(e) {
+                console.log(e);
             }
         }
     }
@@ -146,7 +149,7 @@
                     </div>
                 </div>
                 <div v-else-if="index===1">
-                    <h2> {{ $t(tabs[index]) }}</h2>
+                    <h2> {{ $t(tab) }}</h2>
                     <p> {{ $t('mouseOver') }} </p>
                     <p>
                         <div v-for="skill of skills">
@@ -155,8 +158,9 @@
                     </p>
                 </div>
                 <div v-else-if="index===2">
-                    <h2> {{ $t(tabs[index]) }}</h2>
-                    <map-libre></map-libre>
+                    <h2> {{ $t(tab) }}</h2>
+                    <map-libre @marker-click="test"></map-libre>
+                    <h2>Oulu</h2>
                 </div>
             </div>
         </div>
@@ -352,6 +356,7 @@
         display: flex;
         flex-wrap: nowrap;
         text-align: center;
+        margin-bottom: 2rem;
     }
     div#frontpage-header-title-container {
         flex: 1;
