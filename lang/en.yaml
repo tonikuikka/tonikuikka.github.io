@@ -4,19 +4,41 @@ aboutMe: >
   Technology and Communication Sciences at Tampere University, Finland. I have versatile knowledge of Programming, Data Science and Statistics and I am
   always up to employ my expertise to create something awesome.
 aboutPage: >
-  On this page, one can find a summary of my skills. Everything is implemented by me using Nuxt.js and Typescript. In addition, the page is hosted by GitHub
+  On this page, you can find a summary of my skills. Everything is implemented by me using Nuxt.js and Typescript. In addition, the page is hosted by GitHub
   Pages and the repository of the project is reachable from the link above. For detailed information, do not hesitate to contact me e.g. via social media.
 advancedBeginner: Advanced Beginner
 availableOnGitHub: The repository of this page is available on GitHub
 competent: Competent
+cssDesc: >
+  My current working language. I have been employing CSS at work for the last three years as well as through my studies at the university for an even longer time.
+  I have a strong programming routine as well as excellent information-seeking skills for CSS-related problems.
 expert: Expert
 findMeOn: Find me also on
 finland: Finland
 fullStackDeveloper: Full Stack Developer
+htmlDesc: >
+  My current working language. I have been employing HTML at work for the last three years as well as through my studies at the university for an even longer time.
+  I have a strong programming routine as well as excellent information-seeking skills for HTML-related problems.
+javascriptDesc: >
+  My current working language that I have been using almost daily for the last three years. I have implemented several large real-life projects and employed
+  various Javascript libraries such as Leaflet.js and MapLibre.js. I have a strong programming routine as well as excellent information-seeking skills for
+  Javascript-related problems.
+level: Level
 location: Location
 mainPage: Home
 mouseOver: Hover over or click (on mobile) to read more about my experience with each skill.
+name: Name
 novice: Novice
+nuxtDesc: >
+  My most-used framework for creating web applications. I have experience with both Nuxt 2 and Nuxt 3 for the last two years and even this page has been
+  implemented using Nuxt 3!
 proficient: Proficient
+pythonDesc: >
+  My most-used programming language in my Data Science studies at the university. I have versatile experience with various libraries such as pandas, scikit-learn
+  and PyTorch Geometric, and I implemented my Master's Thesis project using Python. I also have work experience with Python for about two years.
 skills: Skills
+sortBy: Sort by
+vueDesc: >
+  My most-used framework for creating user interfaces based on HTML, CSS and Javascript, and it is also utilized by Nuxt.js. In the last three years, I have
+  gained a strong programming routine as well as excellent information-seeking skills for Vue-related problems.
 zoomOutMap: Zoom out

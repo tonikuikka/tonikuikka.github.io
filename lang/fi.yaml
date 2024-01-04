@@ -9,14 +9,35 @@ aboutPage: >
 advancedBeginner: Edistynyt
 availableOnGitHub: Tämä sivusto löytyy myös GitHubista
 competent: Kykenevä
+cssDesc: >
+  Nykyinen työskentelykieleni. Olen käyttänyt CSS:ää työssäni viimeiset kolme vuotta sekä yliopisto-opinnoissani vielä pidempään. Minulla on vahva ohjelmointirutiini
+  sekä erinomaiset tiedonhakutaidot CSS:ään liittyvissä pulmatilanteissa.
 expert: Taitaja
 findMeOn:  Löydä minut myös näistä
 finland: Suomi
 fullStackDeveloper: Full Stack -kehittäjä
+htmlDesc: >
+  Nykyinen työskentelykieleni. Olen käyttänyt HTML:ää työssäni viimeiset kolme vuotta sekä yliopisto-opinnoissani vielä pidempään. Minulla on vahva ohjelmointirutiini
+  sekä erinomaiset tiedonhakutaidot HTML:ään liittyvissä pulmatilanteissa.
+javascriptDesc: >
+  Nykyinen työskentelykieleni, jota olen käyttänyt lähes päivittäin viimeisen kolmen vuoden ajan. Olen toteuttanut isoja tosielämän projekteja sekä hyödyntänyt
+  useita Javascript-kirjastoja, kuten Leaflet.js ja MapLibre.js. Minulla on vahva ohjelmointirutiini sekä erinomaiset tiedonhakutaidot Javascriptiin liittyvissä pulmatilanteissa.
+level: Taso
 location: Sijainti
 mainPage: Etusivu
 mouseOver: Vie hiiri päälle tai klikkaa (mobiililaitteella) lukeaksesi lisätietoja kokemuksestani kussakin taidossa.
+name: Nimi
 novice: Noviisi
+nuxtDesc: >
+  Eniten käyttämäni ohjelmistokehys verkkosovellusten luomiseen. Minulle on kertynyt kokemusta niin Nuxt 2:sta kuin Nuxt 3:stakin viimeisten kahden vuoden ajalta,
+  ja jopa tämä sivu on luotu Nuxt 3:lla!
 proficient: Pätevä
+pythonDesc: >
+  Eniten käyttämäni ohjelmointikieli datatieteen opinnoissani yliopistossa. Minulla on monipuolinen kokemus erilaisista kirjastoista, kuten pandas, scikit-learn sekä
+  PyTorch Geometric, ja toteutin myös Pro Gradu -projektini Pythonilla. Minulle on kertynyt myös työkokemusta Pythonista noin kaksi vuotta.
 skills: Taidot
+sortBy: Järjestä
+vueDesc: >
+  Eniten käyttämäni viitekehykseni HTML-, CSS- ja Javascript-pohjaisten käyttöliittymien luomiseen, jota myös Nuxt.js käyttää. Viimeisen kolmen vuoden aikana olen hankkinut
+  vahvan ohjelmointirutiinin sekä erinomaiset tiedonhakutaidot Vueen liittyvissä pulmatilanteissa.
 zoomOutMap: Loitonna

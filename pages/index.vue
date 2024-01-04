@@ -10,23 +10,25 @@
                 selectedTab: 0 as number,
                 hideMenu: true,
                 skills: [
-                    {name: 'Javascript', level: 3, description: ""},
-                    {name: 'HTML', level: 3, description: ""},
-                    {name: 'CSS', level: 3, description: ""},
-                    {name: 'Nuxt.js', level: 3, description: ""},
-                    {name: 'Vue.js', level: 3, description: ""},
-                    {name: 'Typescript', level: 3, description: ""},
-                    {name: 'Python', level: 3, description: ""},
-                    {name: 'SQL', level: 3, description: ""},
+                    {name: 'Javascript', level: 5, description: 'javascriptDesc'},
+                    {name: 'HTML', level: 5, description: 'htmlDesc'},
+                    {name: 'CSS', level: 5, description: 'cssDesc'},
+                    {name: 'Nuxt.js', level: 5, description: 'nuxtDesc'},
+                    {name: 'Vue.js', level: 5, description: 'vueDesc'},
+                    {name: 'Typescript', level: 4, description: ""},
+                    {name: 'Python', level: 5, description: 'pythonDesc'},
+                    {name: 'MySQL', level: 4, description: ""},
                     {name: 'PHP', level: 3, description: ""},
                     {name: 'R', level: 3, description: ""},
                     {name: 'Git', level: 3, description: ""},
                     {name: 'REST API', level: 3, description: ""},
-                    {name: 'Azure', level: 3, description: ""},
-                    {name: 'Java', level: 3, description: ""},
-                    {name: 'Scala', level: 3, description: ""},
-                    {name: 'C', level: 3, description: ""},
-                ]
+                    {name: 'Azure', level: 2, description: ""},
+                    {name: 'Java', level: 2, description: ""},
+                    {name: 'Scala', level: 1, description: ""},
+                    {name: 'C', level: 1, description: ""},
+                    {name: 'Linux', level: 2, description: ""},
+                ],
+                sortSkillsBy: 'level'
             }
         },
         watch: {
@@ -37,8 +39,21 @@
         mounted() {
             window.addEventListener('resize', this._toggleTitleVisibility);
             this._toggleTitleVisibility();
+            this._sortSkills();
+            this._fitHeight();
+        },
+        unmounted() {
+            window.removeEventListener('resize', this._toggleTitleVisibility);
         },
         methods: {
+            _fitHeight: function() {
+                const container = this.$refs['page-content'] as HTMLElement;
+                const tabs = this.$refs['page-tabs'] as HTMLElement[];
+                if (!container || !tabs) return;
+                const lastChild = tabs[this.selectedTab]?.lastElementChild as HTMLElement;
+                const height = lastChild?.offsetTop+lastChild?.offsetHeight+100;
+                container.style.setProperty('height', `${height}px`);
+            },
             changePage: function() {
                 const container = this.$refs['page-content'] as HTMLElement;
                 if (!container) return;
@@ -58,6 +73,7 @@
                 if (index !== this.selectedTab) {
                     this.selectedTab = index;
                 }
+                this.$nextTick(this._fitHeight);
 			},
             _onNavigatorEvent: function(event, options={}) {
                 switch (event.type) {
@@ -84,6 +100,14 @@
                 if (element.scrollWidth > element.clientWidth) {
                     element.classList.add(className);
                 }
+            },
+            _sortSkills: function() {
+                this.skills.sort((a, b) => {
+                    const aSortBy = a[this.sortSkillsBy];
+                    const bSortBy = b[this.sortSkillsBy];
+                    const sortValue =  aSortBy > bSortBy ? 1 : bSortBy > aSortBy ? -1 : 0;
+                    return sortValue*(this.sortSkillsBy === 'level' ? -1 : 1);
+                });
             },
             test: function(e) {
                 console.log(e);
@@ -113,10 +137,10 @@
         :hidden="hideMenu" @navigator-event="_onNavigatorEvent($event, {closeAfter: true})"
         class="mobile-only"></navigator>
         <div id="page-content" ref="page-content" @scrollend="onScrollEnd">
-            <div class="page-tabs" v-for="(tab, index) in tabs">
-                <div v-if="index===0">
+            <div class="page-tab" v-for="(tab, index) in tabs" ref="page-tabs">
+                <template v-if="index===0">
                     <div id="frontpage-header">
-                        <img id="toni" src="~/assets/img/toni.jpg"/>
+                        <img id="toni" src="~/assets/img/toni.png"/>
                         <div id="frontpage-header-title-container">
                             <a href="https://github.com/tonikuikka/tonikuikka.github.io"
                             :title="$t('availableOnGitHub')" class="fa fa-github" target="_blank"></a>
@@ -131,7 +155,7 @@
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"/>
                             </div>
-                            <div>
+                            <div class="page-content">
                                 <span class="material-icons">
                                     location_on
                                 </span>
@@ -141,27 +165,40 @@
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="page-content">
                         <span class="material-icons between-p"> lightbulb </span>
                         <p> {{ $t('aboutMe') }} </p>
                         <span class="material-icons between-p"> lightbulb </span>
                         <p> {{ $t('aboutPage') }} </p>
                     </div>
-                </div>
-                <div v-else-if="index===1">
-                    <h2> {{ $t(tab) }}</h2>
-                    <p> {{ $t('mouseOver') }} </p>
-                    <p>
-                        <div v-for="skill of skills">
-                            <skill-bar :skill="skill"></skill-bar>
-                        </div>
-                    </p>
-                </div>
-                <div v-else-if="index===2">
-                    <h2> {{ $t(tab) }}</h2>
-                    <map-libre @marker-click="test"></map-libre>
-                    <h2>Oulu</h2>
-                </div>
+                </template>
+                <template v-else-if="index===1">
+                    <div class="page-content">
+                        <h2> {{ $t(tab) }}</h2>
+                        <p> 
+                            {{ $t('mouseOver') }}
+                            <div id="sort-skills-container">
+                                <label for="sort-skills-by">
+                                    {{ $t('sortBy') }}
+                                </label>
+                                <select id="sort-skills-by" v-model="sortSkillsBy" @change="_sortSkills">
+                                    <option :value="'level'"> {{ $t('level') }}</option>
+                                    <option :value="'name'"> {{ $t('name') }}</option>
+                                </select>
+                            </div>
+                            <div v-for="skill of skills">
+                                <skill-bar :skill="skill"></skill-bar>
+                            </div>
+                        </p>
+                    </div>
+                </template>
+                <template v-else-if="index===2">
+                    <div class="page-content">
+                        <h2> {{ $t(tab) }}</h2>
+                        <map-libre @marker-click="test"></map-libre>
+                        <h2>Oulu</h2>
+                    </div>
+                </template>
             </div>
         </div>
         <footer>
@@ -196,7 +233,7 @@
                     class="fa fa-facebook" target="_blank"></a>
                 </div>
                 <div id="footer-copyright">
-                    <p> © 2023 Toni Kuikka </p>
+                    <p> © 2024 Toni Kuikka </p>
                 </div>
             </div>
         </footer>
@@ -258,22 +295,20 @@
     }
     div#page-content {
         width: 100%;
-        height: 100%;
         overflow-y: hidden;
         overflow-x: auto;
         display: flex;
         scroll-snap-type: x mandatory;
     }
     div#page-content p {
-        padding: 0 1%;
+        padding: 1rem 0.5rem;
         font-size: 1.125rem;
         line-height: 1.75rem;
+        letter-spacing: 1px;
     }
-    div.page-tabs {
+    div.page-tab {
         min-width: 100%;
         max-width: 100%;
-        min-height: 100%;
-        max-height: 100%;
         scroll-snap-align: start;
         overflow-x: hidden;
         overflow-y: auto;
@@ -327,11 +362,13 @@
         color: var(--headers);
     }
     a.fa {
-        font-size: 30px;
         width: 50px;
         text-align: center;
         text-decoration: none;
         margin: 5px 2px;
+    }
+    div#social-media a.fa {
+        font-size: 30px;
         color: var(--paragraphs);
     }
     a.fa:hover {
@@ -357,6 +394,17 @@
         flex-wrap: nowrap;
         text-align: center;
         margin-bottom: 2rem;
+        background: linear-gradient(to right, var(--accent1-bright), var(--accent1));
+    }
+    div#frontpage-header h1,
+    div#frontpage-header h2 {
+        color: #fff !important;
+    }
+    a.fa-github {
+        color: #fff;
+    }
+    a.fa-github:hover {
+        color: var(--accent2);
     }
     div#frontpage-header-title-container {
         flex: 1;
@@ -364,29 +412,36 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        max-width:100%;
+        overflow:hidden;
     }
     div#frontpage-header-title-container > div {
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 1rem 0;
+        max-width:100%;
+        overflow:hidden;
     }
     div#frontpage-header h1 {
-        font-size: 300%;
+        font-size: 2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
     }
     div#frontpage-header h2 {
-        font-size: 200%;
+        font-size: 1.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
     }
     img#toni {
-        width: 30%;
+        width: 40%;
         object-fit: cover;
     }
     div#programming-lang-icons > img {
         width: 10%;
         padding: 1%;
-    }
-    div.page-tabs > div {
-        padding: 2%;
     }
     a.fa-github {
         align-self: flex-end;
@@ -403,7 +458,33 @@
         text-align: center;
         margin: 0.5rem 0;
     }
+    div.page-content {
+        padding: 0 1rem;
+    }
+    select {
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        background: var(--headers);
+        color: var(--background);
+    }
+    div#sort-skills-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    select#sort-skills-by {
+        margin-left: 0.5rem;
+    }
     @media (min-width: 640px) {
+        div#frontpage-header h1 {
+            font-size: 3rem;
+        }
+        div#frontpage-header h2 {
+            font-size: 2rem;
+        }
+        img#toni {
+            width: 20%;
+        }
         .mobile-only {
             display: none !important;
         }
@@ -412,6 +493,9 @@
         }
         footer {
             flex-direction: row;
+        }
+        div.page-content {
+            padding: 0 5rem;
         }
     }
 </style>

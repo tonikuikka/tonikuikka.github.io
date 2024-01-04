@@ -3,10 +3,9 @@
         data() {
             return {
                 tooltip: {
-                    left: '0px' as string,
-                    top: '0px' as string
-                },
-                showTooltip: false as boolean
+                    left: '-999999px' as string,
+                    top: '-999999px' as string
+                }
             }
         },
 		props: {
@@ -31,19 +30,34 @@
                 }
             },
             _showTooltip: function(event: MouseEvent) {
-                this.tooltip.left = `${event.clientX}px`;
-                this.tooltip.top = `${event.clientY}px`;
-                this.showTooltip = true;
+                const tooltip = this.$refs['tooltip'] as HTMLElement;
+                if (!tooltip) return;
+                const width = tooltip.offsetWidth;
+                const height = tooltip.offsetHeight;
+                const clientX = event.clientX;
+                const clientY = event.clientY;
+
+                if (width+clientX > (window.innerWidth || document.documentElement.clientWidth)) {
+                    this.tooltip.left = `${clientX-width >= 0 ? clientX-width : 0}px`;
+                } else {
+                    this.tooltip.left = `${clientX}px`;
+                }
+                if (height+clientY > (window.innerHeight || document.documentElement.clientHeight)) {
+                    this.tooltip.top = `${clientY-height >= 0 ? clientY-height : 0}px`;
+                } else {
+                    this.tooltip.top = `${clientY}px`;
+                }
             },
             _hideTooltip: function() {
-                this.showTooltip = false;
+                this.tooltip.left = '-999999px';
+                this.tooltip.top = '-999999px';
             }
         }
 	}
 </script>
 
 <template>
-    <div class="skill-bar-container" ref="skill-bar" @mouseover="_showTooltip($event)" @mouseleave="_hideTooltip()">
+    <div class="skill-bar-container" ref="skill-bar" @mousemove="_showTooltip($event)" @mouseleave="_hideTooltip()">
         <div @click.prevent>
             {{ skill.name }}
         </div>
@@ -54,8 +68,9 @@
         </div>
     </div>
     <Transition>
-        <div class="tooltip" v-show="showTooltip" :style="tooltip">
+        <div class="tooltip" :style="tooltip" ref="tooltip">
             <h2> {{ skill.name }}: {{ $t(_getClass(skill.level) as string) }} </h2>
+            <p> {{ $t(skill.description) }} </p>
         </div>
     </Transition>
 </template>
@@ -66,6 +81,7 @@
         flex-wrap: nowrap;
         position: relative;
         cursor: pointer;
+        font-size: 0.75rem;
     }
     div.skill-bar-container > div {
         margin: 1% 0;
@@ -79,7 +95,7 @@
     }
     div.skill-bar-container > div:first-of-type,
     div.skill-bar-container > div:last-of-type {
-        width: 100px;
+        width: 150px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -108,33 +124,20 @@
     div.asd {
         background-color: #9da1a6 !important;
     }
-    .tooltip-text {
-        visibility: hidden;
-        background-color: black;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px;
-        position: absolute;
-        z-index: 1;
-        bottom: 50%;
-        left: 50%;
-        margin-left: -60px;
-        opacity: 0;
-        transition: opacity 1s;
-    }
-    .skill-bar-container:hover .tooltip-text {
+    .skill-bar-container:hover {
         visibility: visible;
         opacity: 1;
     }
     div.tooltip {
-        background-color: black;
-        color: #fff;
+        background-color: var(--accent2);
+        color: var(--headers);
         text-align: center;
         border-radius: 6px;
         padding: 5px;
         position: fixed;
         z-index: 1;
+        max-width: 300px;
+        font-size: 75%;
     }
     .v-enter-from,
     .v-leave-to {
@@ -145,5 +148,10 @@
     }
     .v-leave-active {
         transition: opacity 0.1s ease;
+    }
+    @media (min-width: 640px) {
+        div.tooltip {
+            font-size: 100%;
+        }
     }
 </style>
