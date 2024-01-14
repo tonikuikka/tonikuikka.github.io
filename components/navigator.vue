@@ -1,4 +1,6 @@
 <script lang="ts">
+import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables';
+
 	export default {
 		props: {
 			buttons: {
@@ -29,7 +31,7 @@
             @click="$emit('navigatorEvent', {type: 'changePage',  index: index})">
                 {{ $t(button as string) }}
             </button>
-            <button v-for="locale of $i18n.locales" v-show="locale.code !== $i18n.locale"
+            <button v-for="locale of ($i18n.locales as LocaleObject[])" v-show="locale.code !== $i18n.locale"
             @click="$emit('navigatorEvent', {type: 'switchLanguage', lang: locale.code})">
                 <img class="flag-icon" :src='`/flags/${locale.code}.svg`'/>
                 {{ locale.name }}
@@ -88,10 +90,5 @@
     img.flag-icon {
         margin-right: 10px;
         width: 25px;
-    }
-    @media (min-width: 640px) {
-        div#navigator .hidden {
-            display: initial;
-        }
     }
 </style>

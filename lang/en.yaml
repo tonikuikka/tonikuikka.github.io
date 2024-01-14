@@ -8,10 +8,12 @@ aboutPage: >
   Pages and the repository of the project is reachable from the link above. For detailed information, do not hesitate to contact me e.g. via social media.
 advancedBeginner: Advanced Beginner
 availableOnGitHub: The repository of this page is available on GitHub
+brno: Brno, Czechia
+brnoDesc: The city where I spent an exchange period in 2020. I studied for six months at Masaryk University in the Faculty of Informatics.
 competent: Competent
 cssDesc: >
   My current working language. I have been employing CSS at work for the last three years as well as through my studies at the university for an even longer time.
-  I have a strong programming routine as well as excellent information-seeking skills for CSS-related problems.
+  I have a strong programming routine as well as excellent information-seeking skills for CSS-related problems. I have not much experience of graphic design.
 expert: Expert
 findMeOn: Find me also on
 finland: Finland
@@ -24,6 +26,7 @@ javascriptDesc: >
   various Javascript libraries such as Leaflet.js and MapLibre.js. I have a strong programming routine as well as excellent information-seeking skills for
   Javascript-related problems.
 level: Level
+links: Links
 location: Location
 mainPage: Home
 mouseOver: Hover over or click (on mobile) to read more about my experience with each skill.
@@ -32,12 +35,22 @@ novice: Novice
 nuxtDesc: >
   My most-used framework for creating web applications. I have experience with both Nuxt 2 and Nuxt 3 for the last two years and even this page has been
   implemented using Nuxt 3!
+oulu: Oulu, Finland
+ouluDesc: My city of residence since 2023.
+prague: Prague, Czechia
+pragueDesc: My city of residence in 2022. I worked in a local company, gaining skills to work in a multicultural environment.
 proficient: Proficient
+pythonAssignments: Python assignments
 pythonDesc: >
   My most-used programming language in my Data Science studies at the university. I have versatile experience with various libraries such as pandas, scikit-learn
   and PyTorch Geometric, and I implemented my Master's Thesis project using Python. I also have work experience with Python for about two years.
 skills: Skills
 sortBy: Sort by
+suonenjoki: Suonenjoki, Finland
+suonenjokiDesc: My hometown where I lived and attended elementary as well as high school in 1996–2015.
+tampere: Tampere, Finland
+tampereDesc: My city of residence in 2016–2022. I completed my Bachelor's and Master's Degrees at Tampere University.
+thesis: "Master's Thesis: Predicting the Building Envelope in BIM Models Using Graph Convolutional Neural Networks (2022)"
 vueDesc: >
   My most-used framework for creating user interfaces based on HTML, CSS and Javascript, and it is also utilized by Nuxt.js. In the last three years, I have
   gained a strong programming routine as well as excellent information-seeking skills for Vue-related problems.

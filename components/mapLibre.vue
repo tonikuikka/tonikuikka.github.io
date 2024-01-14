@@ -1,13 +1,19 @@
 <script lang="ts">
+import { AllGeoJSON } from '@turf/turf';
+import { LngLatLike, Marker } from 'maplibre-gl';
+
 	export default {
         data() {
             return {
                 map: null as any,
-                center: [0, 0] as number[],
+                center: [0, 0] as LngLatLike,
                 markers: [] as any[]
             }
         },
         emits: ['markerClick'],
+        mounted() {
+            this.initMap();
+        },
         methods: {
             initMap: async function() {
                 const maplibregl = await import('maplibre-gl');
@@ -18,8 +24,8 @@
                         {
                             'type': 'Feature',
                             'properties': {
-                                'content': 'Oulu',
-                                'selected': true
+                                'title': 'oulu',
+                                'desc': 'ouluDesc'
                             },
                             'geometry': {
                                 'type': 'Point',
@@ -28,7 +34,8 @@
                         }, {
                             'type': 'Feature',
                             'properties': {
-                                'content': 'Suonenjoki'
+                                'title': 'suonenjoki',
+                                'desc': 'suonenjokiDesc'
                             },
                             'geometry': {
                                 'type': 'Point',
@@ -37,7 +44,8 @@
                         }, {
                             'type': 'Feature',
                             'properties': {
-                                'content': 'Tampere'
+                                'title': 'tampere',
+                                'desc': 'tampereDesc'
                             },
                             'geometry': {
                                 'type': 'Point',
@@ -46,7 +54,8 @@
                         }, {
                             'type': 'Feature',
                             'properties': {
-                                'content': 'Brno, Czechia'
+                                'title': 'brno',
+                                'desc': 'brnoDesc'
                             },
                             'geometry': {
                                 'type': 'Point',
@@ -55,7 +64,8 @@
                         }, {
                             'type': 'Feature',
                             'properties': {
-                                'content': 'Prague, Czechia'
+                                'title': 'prague',
+                                'desc': 'pragueDesc'
                             },
                             'geometry': {
                                 'type': 'Point',
@@ -64,7 +74,7 @@
                         }
                     ]
                 };
-                this.center = turf.center(geojson).geometry.coordinates || [0, 0];
+                this.center = (turf.center(geojson as AllGeoJSON).geometry.coordinates || [0, 0]) as LngLatLike;
                 this.map = new maplibregl.Map({
                     container: 'map',
                     center: this.center,
@@ -74,14 +84,16 @@
                     style: 'https://api.maptiler.com/maps/f34804ce-f73d-45af-9dc4-7e99216d8a25/style.json?key=EjPwybiX5YV8l2YqurXi'
                 });
                 this.map.on('load', () => {
-                    for (const feature of geojson.features) {
+                    for (let i = 0; i < geojson.features.length; i++) {
+                        const feature = geojson.features[i];
                         const marker = new maplibregl.Marker({color: "var(--accent2)", anchor:'bottom', offset: [-0.5, -2]})
-                        .setLngLat(feature.geometry.coordinates)
+                        .setLngLat(feature.geometry.coordinates as LngLatLike)
                         .addTo(this.map);
                         
                         marker.addClassName('marker');
-                        if (feature.properties.selected) {
+                        if (i === 0) {
                             marker.addClassName('selected');
+                            this.$emit('markerClick', feature.properties);
                         }
                         const el = marker.getElement() as HTMLElement;
                         el.addEventListener('click', () => { this.onMarkerClick(marker, feature.properties) });
@@ -90,7 +102,9 @@
                     }
                 });
             },
-            onMarkerClick: function(marker: any, properties: any) {
+            onMarkerClick: function(marker: Marker, properties: { [key: string]: any}) {
+                if (!this.map) return;
+
                 this.map.flyTo({center: marker.getLngLat(), zoom: 6});
                 for (const m of this.markers) {
                     m.removeClassName('selected');
@@ -99,11 +113,9 @@
                 this.$emit('markerClick', properties);
             },
             zoomOut: function() {
-                this.map.flyTo({center: this.center, zoom: 3, pitch: 75, bearing: 0});
+                if (!this.map) return;
+                this.map.flyTo({ center: this.center, zoom: 3, pitch: 75, bearing: 0 });
             }
-        },
-        mounted() {
-            this.initMap();
         }
 	}
 </script>

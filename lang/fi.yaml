@@ -8,10 +8,12 @@ aboutPage: >
   koko projektin tietovarastoon pääsee yläpuolelta löytyvästä linkistä. Yksityiskohtaisempia tietoja minulta voi kysellä esimerkiksi sosiaalisen median kautta.
 advancedBeginner: Edistynyt
 availableOnGitHub: Tämä sivusto löytyy myös GitHubista
+brno: Brno, Tšekki
+brnoDesc: Kaupunki, jossa olin opiskelijavaihdossa 2020. Opiskelin puolen vuoden ajan Masarykin yliopistossa informatiikan tiedekunnassa.
 competent: Kykenevä
 cssDesc: >
   Nykyinen työskentelykieleni. Olen käyttänyt CSS:ää työssäni viimeiset kolme vuotta sekä yliopisto-opinnoissani vielä pidempään. Minulla on vahva ohjelmointirutiini
-  sekä erinomaiset tiedonhakutaidot CSS:ään liittyvissä pulmatilanteissa.
+  sekä erinomaiset tiedonhakutaidot CSS:ään liittyvissä pulmatilanteissa. Graafisesta suunnittelusta minulla ei ole paljoakaan kokemusta.
 expert: Taitaja
 findMeOn:  Löydä minut myös näistä
 finland: Suomi
@@ -23,6 +25,7 @@ javascriptDesc: >
   Nykyinen työskentelykieleni, jota olen käyttänyt lähes päivittäin viimeisen kolmen vuoden ajan. Olen toteuttanut isoja tosielämän projekteja sekä hyödyntänyt
   useita Javascript-kirjastoja, kuten Leaflet.js ja MapLibre.js. Minulla on vahva ohjelmointirutiini sekä erinomaiset tiedonhakutaidot Javascriptiin liittyvissä pulmatilanteissa.
 level: Taso
+links: Linkkejä
 location: Sijainti
 mainPage: Etusivu
 mouseOver: Vie hiiri päälle tai klikkaa (mobiililaitteella) lukeaksesi lisätietoja kokemuksestani kussakin taidossa.
@@ -31,12 +34,22 @@ novice: Noviisi
 nuxtDesc: >
   Eniten käyttämäni ohjelmistokehys verkkosovellusten luomiseen. Minulle on kertynyt kokemusta niin Nuxt 2:sta kuin Nuxt 3:stakin viimeisten kahden vuoden ajalta,
   ja jopa tämä sivu on luotu Nuxt 3:lla!
+oulu: Oulu, Suomi
+ouluDesc: Asuinkaupunkini vuodesta 2023 lähtien.
+prague: Praha, Tšekki
+pragueDesc: Asuinkaupunkini vuonna 2022. Työskentelin paikallisessa yrityksessä ja kerrytin samalla taitojani toimia monikulttuurisessa ympäristössä.
 proficient: Pätevä
+pythonAssignments: Python-tehtäviä
 pythonDesc: >
   Eniten käyttämäni ohjelmointikieli datatieteen opinnoissani yliopistossa. Minulla on monipuolinen kokemus erilaisista kirjastoista, kuten pandas, scikit-learn sekä
   PyTorch Geometric, ja toteutin myös Pro Gradu -projektini Pythonilla. Minulle on kertynyt myös työkokemusta Pythonista noin kaksi vuotta.
 skills: Taidot
 sortBy: Järjestä
+suonenjoki: Suonenjoki, Suomi
+suonenjokiDesc: Synnyinkaupunkini, jossa asuin ja kävin peruskoulun sekä lukion vuosina 1996–2015.
+tampere: Tampere, Suomi
+tampereDesc: Asuinkaupunkini vuosina 2016–2022. Suoritin kandidaatin ja maisterin tutkinnot Tampereen yliopistossa.
+thesis: "Pro Gradu -tutkielma: Predicting the Building Envelope in BIM Models Using Graph Convolutional Neural Networks (2022)"
 vueDesc: >
   Eniten käyttämäni viitekehykseni HTML-, CSS- ja Javascript-pohjaisten käyttöliittymien luomiseen, jota myös Nuxt.js käyttää. Viimeisen kolmen vuoden aikana olen hankkinut
   vahvan ohjelmointirutiinin sekä erinomaiset tiedonhakutaidot Vueen liittyvissä pulmatilanteissa.

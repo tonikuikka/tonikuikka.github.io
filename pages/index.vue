@@ -1,22 +1,24 @@
 <script lang="ts">
+    interface Skill {
+        name: string,
+        level: number,
+        description: string
+    };
+
     export default {
         data() {
             return {
-                tabs: [
-                    'mainPage',
-                    'skills',
-                    'location'
-                ] as string[],
+                tabs: ['mainPage', 'skills', 'location'] as string[],
                 selectedTab: 0 as number,
-                hideMenu: true,
+                hideMenu: true as boolean,
                 skills: [
                     {name: 'Javascript', level: 5, description: 'javascriptDesc'},
                     {name: 'HTML', level: 5, description: 'htmlDesc'},
-                    {name: 'CSS', level: 5, description: 'cssDesc'},
                     {name: 'Nuxt.js', level: 5, description: 'nuxtDesc'},
                     {name: 'Vue.js', level: 5, description: 'vueDesc'},
                     {name: 'Typescript', level: 4, description: ""},
                     {name: 'Python', level: 5, description: 'pythonDesc'},
+                    {name: 'CSS', level: 4, description: 'cssDesc'},
                     {name: 'MySQL', level: 4, description: ""},
                     {name: 'PHP', level: 3, description: ""},
                     {name: 'R', level: 3, description: ""},
@@ -27,8 +29,9 @@
                     {name: 'Scala', level: 1, description: ""},
                     {name: 'C', level: 1, description: ""},
                     {name: 'Linux', level: 2, description: ""},
-                ],
-                sortSkillsBy: 'level'
+                ] as Skill[],
+                sortSkillsBy: 'level' as string,
+                location: {} as {title?: string, desc?: string}
             }
         },
         watch: {
@@ -39,8 +42,8 @@
         mounted() {
             window.addEventListener('resize', this._toggleTitleVisibility);
             this._toggleTitleVisibility();
-            this._sortSkills();
-            this._fitHeight();
+            this.skills.sort(this._sortSkills);
+            this.$nextTick(this._fitHeight);
         },
         unmounted() {
             window.removeEventListener('resize', this._toggleTitleVisibility);
@@ -75,23 +78,24 @@
                 }
                 this.$nextTick(this._fitHeight);
 			},
-            _onNavigatorEvent: function(event, options={}) {
+            _onNavigatorEvent: function(event: {type: string, index?: number, lang?: string},
+            options: {[key: string]: any} = {}) {
                 switch (event.type) {
                     case 'changePage':
-                        this.selectedTab = event.index;
+                        if (event.index !== undefined) this.selectedTab = event.index;
                         break;
                     case 'switchLanguage':
-                        this.$i18n.setLocale(event.lang);
+                        if (event.lang !== undefined) this.$i18n.setLocale(event.lang);
                         break;
                 }
-                if (options.closeAfter) this.hideMenu = true;
+                if (options?.closeAfter) this.hideMenu = true;
             },
             _footerNavClick: function(tab: number) {
                 this.selectedTab = tab;
                 window.scrollTo(0,0);
             },
             _toggleTitleVisibility: function() {
-                const element = this.$refs['title'] as HTMLElement;
+                const element = this.$refs['title-container'] as HTMLElement;
                 if (!element) return;
 
                 const className = "hidden";
@@ -101,16 +105,11 @@
                     element.classList.add(className);
                 }
             },
-            _sortSkills: function() {
-                this.skills.sort((a, b) => {
-                    const aSortBy = a[this.sortSkillsBy];
-                    const bSortBy = b[this.sortSkillsBy];
-                    const sortValue =  aSortBy > bSortBy ? 1 : bSortBy > aSortBy ? -1 : 0;
-                    return sortValue*(this.sortSkillsBy === 'level' ? -1 : 1);
-                });
-            },
-            test: function(e) {
-                console.log(e);
+            _sortSkills: function(a: Skill, b: Skill) {
+                const aSortBy = a[this.sortSkillsBy as keyof Skill];
+                const bSortBy = b[this.sortSkillsBy as keyof Skill];
+                const sortValue =  aSortBy > bSortBy ? 1 : bSortBy > aSortBy ? -1 : 0;
+                return sortValue*(this.sortSkillsBy === 'level' ? -1 : 1);
             }
         }
     }
@@ -119,10 +118,8 @@
 <template>
     <div id="page-wrapper">
         <header>
-            <div ref="title">
-                <h1>
-                    <p class="typing-effect">Toni Kuikka</p>
-                </h1>
+            <div id="title-container" ref="title-container">
+                <h1><p class="page-title typing-effect">Toni Kuikka</p></h1>
             </div>
             <button id="toggle-menu" class="mobile-only" @click="hideMenu = !hideMenu"
             :class="{'active':!hideMenu}">
@@ -140,7 +137,7 @@
             <div class="page-tab" v-for="(tab, index) in tabs" ref="page-tabs">
                 <template v-if="index===0">
                     <div id="frontpage-header">
-                        <img id="toni" src="~/assets/img/toni.png"/>
+                        <img id="frontpage-header-img" src="~/assets/img/toni.png"/>
                         <div id="frontpage-header-title-container">
                             <a href="https://github.com/tonikuikka/tonikuikka.github.io"
                             :title="$t('availableOnGitHub')" class="fa fa-github" target="_blank"></a>
@@ -155,7 +152,7 @@
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"/>
                             </div>
-                            <div class="page-content">
+                            <div class="tab-content">
                                 <span class="material-icons">
                                     location_on
                                 </span>
@@ -165,7 +162,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="page-content">
+                    <div class="tab-content">
                         <span class="material-icons between-p"> lightbulb </span>
                         <p> {{ $t('aboutMe') }} </p>
                         <span class="material-icons between-p"> lightbulb </span>
@@ -173,15 +170,16 @@
                     </div>
                 </template>
                 <template v-else-if="index===1">
-                    <div class="page-content">
+                    <div class="tab-content">
                         <h2> {{ $t(tab) }}</h2>
+                        <span class="material-icons between-p"> lightbulb </span>
                         <p> 
                             {{ $t('mouseOver') }}
                             <div id="sort-skills-container">
                                 <label for="sort-skills-by">
                                     {{ $t('sortBy') }}
                                 </label>
-                                <select id="sort-skills-by" v-model="sortSkillsBy" @change="_sortSkills">
+                                <select id="sort-skills-by" v-model="sortSkillsBy" @change="skills.sort(_sortSkills);">
                                     <option :value="'level'"> {{ $t('level') }}</option>
                                     <option :value="'name'"> {{ $t('name') }}</option>
                                 </select>
@@ -193,10 +191,28 @@
                     </div>
                 </template>
                 <template v-else-if="index===2">
-                    <div class="page-content">
-                        <h2> {{ $t(tab) }}</h2>
-                        <map-libre @marker-click="test"></map-libre>
-                        <h2>Oulu</h2>
+                    <div class="tab-content">
+                        <h2> {{ $t(tab) }} </h2>
+                        <map-libre @marker-click="location=$event"></map-libre>
+
+                        <h2 v-if="location.title">{{ $t(location.title) }}</h2>
+                        <p v-if="location.desc"> {{ $t(location.desc) }}</p>
+                    </div>
+                    <span class="material-icons between-p"> lightbulb </span>
+                    <div class="tab-content">
+                        <h2> {{ $t('links') }} </h2>
+                        <ul>
+                            <li>
+                                <a href="https://urn.fi/URN:NBN:fi:tuni-202204273944" target="_blank">
+                                    {{ $t('thesis') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://colab.research.google.com/drive/1Eh7lXkkv0XVNJlGMXlAU6flwZLhc_lOt?usp=s" target="_blank">
+                                    {{ $t('pythonAssignments') }}
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </template>
             </div>
@@ -204,7 +220,7 @@
         <footer>
             <div id="footer-h-container">
                 <h2>
-                    <p class="typing-effect">Toni Kuikka</p>
+                    <p class="page-title">Toni Kuikka</p>
                 </h2>
                 <!--<a href="https://info.flagcounter.com/3IFl" id="flag-counter">
                     <img src="https://s01.flagcounter.com/count/3IFl/bg_FFFFFF/txt_000000/border_CCCCCC/columns_6/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/"
@@ -212,7 +228,7 @@
                 </a>-->
             </div>
             <div>
-                <ul>
+                <ul id="footer-nav">
                     <li v-for="(tab, index) in tabs">
                         <button @click="_footerNavClick(index)">
                             <b>{{ $t(tab) }}</b>
@@ -221,7 +237,7 @@
                 </ul>
             </div>
             <div id="social-media">
-                <div>
+                <div id="social-media-label">
                     <p> {{ $t('findMeOn') }} </p>
                 </div>
                 <div>
@@ -254,26 +270,29 @@
         overflow: hidden;
         margin-left: 2%;
     }
-    header > div:first-child {
+    div#title-container {
         flex: 1;
         overflow: hidden;
     }
     h1, h2 {
         margin: 0;
-        color: var(--headers);
         width: fit-content;
     }
     h1, h2, h1 *, h2 * {
         font-family: 'Aldrich', 'Courier New', Courier, monospace;
     }
-    p.typing-effect {
+    .page-title {
         white-space: nowrap;
         overflow: hidden;
         border-right: 5px solid var(--accent1);
     }
-    h1 > p.typing-effect {
+    .typing-effect {
         width: 0;
         animation: typing 2s steps(11) forwards;
+    }
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100%; }
     }
     button#toggle-menu {
         height: 100%;
@@ -314,15 +333,6 @@
         overflow-y: auto;
         position: sticky;
     }
-
-    @keyframes typing {
-        from { width: 0 }
-        to { width: 100%; }
-    }
-
-    .hidden {
-        display:none;
-    }
     .desktop-only {
         display: none !important;
     }
@@ -350,7 +360,9 @@
     ul {
         list-style-type: none;
         padding: 0;
-        text-align: center;
+    }
+    ul#footer-nav {
+        text-align: center;  
     }
     footer button {
         background: none;
@@ -358,31 +370,28 @@
         color: var(--paragraphs);
         padding: 5px 0;
     }
-    footer button:hover {
+    h1, h2, footer button:hover, a:hover,
+    div#social-media-label {
         color: var(--headers);
+    }
+    a {
+        text-decoration: none;
+        color: var(--paragraphs);
     }
     a.fa {
         width: 50px;
         text-align: center;
-        text-decoration: none;
         margin: 5px 2px;
-    }
-    div#social-media a.fa {
-        font-size: 30px;
-        color: var(--paragraphs);
-    }
-    a.fa:hover {
-        color: var(--headers);
     }
     div#social-media {
         display: flex;
         flex-direction: column;
     }
+    div#social-media a.fa {
+        font-size: 30px;
+    }
     div#social-media p {
         font-size: 80%;
-    }
-    div#social-media > div:first-child {
-        color: var(--headers);
     }
     div#footer-copyright {
         align-self: flex-end;
@@ -435,7 +444,7 @@
         text-overflow: ellipsis;
         max-width: 100%;
     }
-    img#toni {
+    img#frontpage-header-img {
         width: 40%;
         object-fit: cover;
     }
@@ -458,7 +467,7 @@
         text-align: center;
         margin: 0.5rem 0;
     }
-    div.page-content {
+    div.tab-content {
         padding: 0 1rem;
     }
     select {
@@ -482,7 +491,7 @@
         div#frontpage-header h2 {
             font-size: 2rem;
         }
-        img#toni {
+        img#frontpage-header-img {
             width: 20%;
         }
         .mobile-only {
@@ -494,7 +503,7 @@
         footer {
             flex-direction: row;
         }
-        div.page-content {
+        div.tab-content {
             padding: 0 5rem;
         }
     }

@@ -57,22 +57,21 @@
 </script>
 
 <template>
-    <div class="skill-bar-container" ref="skill-bar" @mousemove="_showTooltip($event)" @mouseleave="_hideTooltip()">
+    <div class="skill-bar-container" ref="skill-bar" @mousemove="_showTooltip($event)"
+    @mouseleave="_hideTooltip()">
         <div @click.prevent>
             {{ skill.name }}
         </div>
-        <div v-for="i in 5" :class="_getClass(skill.level), {'asd': i > skill.level }"
+        <div v-for="i in 5" :class="_getClass(skill.level), {'blank': i > skill.level }"
         class="indicators" @click.prevent></div>
         <div @click.prevent>
             {{ $t(_getClass(skill.level) as string) }}
         </div>
     </div>
-    <Transition>
-        <div class="tooltip" :style="tooltip" ref="tooltip">
-            <h2> {{ skill.name }}: {{ $t(_getClass(skill.level) as string) }} </h2>
-            <p> {{ $t(skill.description) }} </p>
-        </div>
-    </Transition>
+    <div class="tooltip" :style="tooltip" ref="tooltip">
+        <h2> {{ skill.name }}: {{ $t(_getClass(skill.level) as string) }} </h2>
+        <p> {{ $t(skill.description) }} </p>
+    </div>
 </template>
 
 <style scoped>
@@ -121,7 +120,7 @@
     div.indicators.expert {
         background-color: #2eab47;
     }
-    div.asd {
+    div.indicators.blank {
         background-color: #9da1a6 !important;
     }
     .skill-bar-container:hover {
@@ -138,16 +137,6 @@
         z-index: 1;
         max-width: 300px;
         font-size: 75%;
-    }
-    .v-enter-from,
-    .v-leave-to {
-        opacity: 0;
-    }
-    .v-enter-active {
-        transition: opacity 1s ease;
-    }
-    .v-leave-active {
-        transition: opacity 0.1s ease;
     }
     @media (min-width: 640px) {
         div.tooltip {
