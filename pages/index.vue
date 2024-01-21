@@ -137,7 +137,7 @@
             <div class="page-tab" v-for="(tab, index) in tabs" ref="page-tabs">
                 <template v-if="index===0">
                     <div id="frontpage-header">
-                        <img id="frontpage-header-img" src="~/assets/img/toni.png"/>
+                        <img id="frontpage-header-img" src="~/assets/img/toni.png" @load="_fitHeight"/>
                         <div id="frontpage-header-title-container">
                             <a href="https://github.com/tonikuikka/tonikuikka.github.io"
                             :title="$t('availableOnGitHub')" class="fa fa-github" target="_blank"></a>
@@ -147,10 +147,10 @@
                                 </h1>
                             </div>
                             <div id="programming-lang-icons">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"/>
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg"/>
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"/>
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" @load="_fitHeight"/>
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg" @load="_fitHeight"/>
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" @load="_fitHeight"/>
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" @load="_fitHeight"/>
                             </div>
                             <div class="tab-content">
                                 <span class="material-icons">
