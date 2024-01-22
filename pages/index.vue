@@ -219,6 +219,12 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="tab-content">
+                        <a href="https://info.flagcounter.com/3IFl" id="flag-counter">
+                            <img src="https://s01.flagcounter.com/count/3IFl/bg_FFFFFF/txt_000000/border_CCCCCC/columns_6/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/"
+                            alt="Flag Counter">
+                        </a>
+                    </div>
                 </template>
             </div>
         </div>
@@ -227,10 +233,6 @@
                 <h2>
                     <p class="page-title">Toni Kuikka</p>
                 </h2>
-                <!--<a href="https://info.flagcounter.com/3IFl" id="flag-counter">
-                    <img src="https://s01.flagcounter.com/count/3IFl/bg_FFFFFF/txt_000000/border_CCCCCC/columns_6/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/"
-                    alt="Flag Counter">
-                </a>-->
             </div>
             <div>
                 <ul id="footer-nav">
@@ -488,6 +490,10 @@
     }
     select#sort-skills-by {
         margin-left: 0.5rem;
+    }
+    #flag-counter {
+        float: right;
+        margin-top: 20px;
     }
     @media (min-width: 640px) {
         div#frontpage-header h1 {
