@@ -495,6 +495,9 @@
         float: right;
         margin-top: 20px;
     }
+    #flag-counter img {
+        max-width: 100%;
+    }
     @media (min-width: 640px) {
         div#frontpage-header h1 {
             font-size: 3rem;
