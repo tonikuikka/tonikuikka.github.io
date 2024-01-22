@@ -7,29 +7,48 @@ aboutPage: >
   On this page, you can find a summary of my skills. Everything is implemented by me using Nuxt.js and Typescript. In addition, the page is hosted by GitHub
   Pages and the repository of the project is reachable from the link above. For detailed information, do not hesitate to contact me e.g. via social media.
 advancedBeginner: Advanced Beginner
+angularDesc: >
+  I have come across Angular often at my work, for example when translating code from Angular to Vue. I understand the syntax fluently,
+  but I have not implemented my own projects with Angular so far.
 availableOnGitHub: The repository of this page is available on GitHub
+azureDesc: >
+  I utilized Azure while working as a Data Analyst for about a year. My basic use is smooth, but the more advanced features are unfamiliar, although learnable.
 brno: Brno, Czechia
 brnoDesc: The city where I spent an exchange period in 2020. I studied for six months at Masaryk University in the Faculty of Informatics.
+cDesc: >
+  I completed one entry-level C course at the university, getting a touch of things such as memory allocation. Otherwise, however, I haven't worked with this language.
+clickLocation: Click on the marker on the map to read more about my relationship with the location!
 competent: Competent
 cssDesc: >
   My current working language. I have been employing CSS at work for the last three years as well as through my studies at the university for an even longer time.
-  I have a strong programming routine as well as excellent information-seeking skills for CSS-related problems. I have not much experience of graphic design.
+  I have a strong programming routine as well as excellent information-seeking skills for CSS-related problems. I have not much experience of graphic design, though.
 expert: Expert
 findMeOn: Find me also on
 finland: Finland
 fullStackDeveloper: Full Stack Developer
+gitDesc: >
+  I use Git in my daily and I have also completed a course related to it at university. I know well the basic functions like push and pull as well as branch management,
+  but the more advanced tools are still slightly unfamiliar to me.
 htmlDesc: >
   My current working language. I have been employing HTML at work for the last three years as well as through my studies at the university for an even longer time.
   I have a strong programming routine as well as excellent information-seeking skills for HTML-related problems.
+javaDesc: >
+  The first programming language that I learned back in 2016! I completed several basic Java courses at the university, which also included project work.
+  Since then, however, I have not had much to do with this language.
 javascriptDesc: >
   My current working language that I have been using almost daily for the last three years. I have implemented several large real-life projects and employed
   various Javascript libraries such as Leaflet.js and MapLibre.js. I have a strong programming routine as well as excellent information-seeking skills for
   Javascript-related problems.
 level: Level
 links: Links
+linuxDesc: >
+  I have come across Linux to some extent both at work and in my studies. Basic use has been fluent, but I have not gained much experience with more thorough use.
 location: Location
 mainPage: Home
 mouseOver: Hover over or click (on mobile) to read more about my experience with each skill.
+mySQLDesc: >
+  At work, I have sometimes had to implement MySQL queries, which I have gained experience from. I have also taken a couple of SQL courses at university.
+  I can handle basic queries and syntax well, but more complex queries and for example joins are sometimes challenging.
 name: Name
 novice: Novice
 nuxtDesc: >
@@ -37,6 +56,9 @@ nuxtDesc: >
   implemented using Nuxt 3!
 oulu: Oulu, Finland
 ouluDesc: My city of residence since 2023.
+phpDesc: >
+  I sometimes code with PHP and read ready-made code at work. In addition, I have implemented a small-scale PHP-related project at the university.
+  However, since I haven't studied PHP any further, my theoretical knowledge could be stronger.
 prague: Prague, Czechia
 pragueDesc: My city of residence in 2022. I worked in a local company, gaining skills to work in a multicultural environment.
 proficient: Proficient
@@ -44,6 +66,14 @@ pythonAssignments: Python assignments
 pythonDesc: >
   My most-used programming language in my Data Science studies at the university. I have versatile experience with various libraries such as pandas, scikit-learn
   and PyTorch Geometric, and I implemented my Master's Thesis project using Python. I also have work experience with Python for about two years.
+rDesc: >
+  I mainly used R while completing my Bachelor's Degree in statistics, and I also implemented my Bachelor's Thesis with R. However, I have not
+  had much programmed with this language since then.
+restAPIDesc: >
+  I have self-taught the basic use of the REST API through my work. I have fine experience in basic usage, but my deeper theoretical knowledge is somewhat lacking.
+scalaDesc: >
+  At the university, I completed one beginner-level Scala course with good grades and became particularly interested in its simplicity.
+  However, I haven't used the language since then.
 skills: Skills
 sortBy: Sort by
 suonenjoki: Suonenjoki, Finland
@@ -51,6 +81,9 @@ suonenjokiDesc: My hometown where I lived and attended Elementary as well as Hig
 tampere: Tampere, Finland
 tampereDesc: My city of residence in 2016–2022. I completed my Bachelor's and Master's Degrees at Tampere University.
 thesis: "Master's Thesis: Predicting the Building Envelope in BIM Models Using Graph Convolutional Neural Networks (2022)"
+typescriptDesc: >
+  My current working language for about a year and a half. I have largely self-taught the language through my work, I have a good knowledge of
+  basic types and I have implemented projects with Typescript. However, more special types can sometimes be a little tricky for me.
 vueDesc: >
   My most-used framework for creating user interfaces based on HTML, CSS and Javascript, and it is also utilized by Nuxt.js. In the last three years, I have
   gained a strong programming routine as well as excellent information-seeking skills for Vue-related problems.

@@ -7,28 +7,47 @@ aboutPage: >
   Tältä sivulta löytyy yhteenveto osaamisestani. Olen toteuttanut kaiken itse Nuxt.js:llä ja Typescriptillä. Lisäksi sivu pyörii GitHub Pages -palvelimella, ja
   koko projektin tietovarastoon pääsee yläpuolelta löytyvästä linkistä. Yksityiskohtaisempia tietoja minulta voi kysellä esimerkiksi sosiaalisen median kautta.
 advancedBeginner: Edistynyt
+angularDesc: >
+  Olen törmännyt Angulariin usein töideni yhteydessä, esimerkiksi kääntäessäni koodia Angularilta Vuelle. Ymmärrän syntaksia sujuvasti, mutta varsinaisia omia projekteja
+  en ole Angularilla toistaiseksi toteuttanut.
 availableOnGitHub: Tämä sivusto löytyy myös GitHubista
+azureDesc: >
+  Käytin Azurea työskennellessäni data-analyytikkona noin vuoden ajan. Peruskäyttö on sujuvaa, mutta kehittyneemmät ominaisuudet ovat vieraita, joskin varmasti opittavissa.
 brno: Brno, Tšekki
 brnoDesc: Kaupunki, jossa olin opiskelijavaihdossa 2020. Opiskelin puolen vuoden ajan Masarykin yliopistossa informatiikan tiedekunnassa.
+cDesc: >
+  Suoritin yhden alkeistason C-kurssin yliopistossa saaden kosketuksen muun muassa muistin varaamiseen. Muutoin en ole kielen kanssa kuitenkaan työskennellyt.
+clickLocation: Klikkaa kartalla olevaa merkkiä lukeaksesi lisää suhteestani sen osoittamaan paikkaan!
 competent: Kykenevä
 cssDesc: >
   Nykyinen työskentelykieleni. Olen käyttänyt CSS:ää työssäni viimeiset kolme vuotta sekä yliopisto-opinnoissani vielä pidempään. Minulla on vahva ohjelmointirutiini
-  sekä erinomaiset tiedonhakutaidot CSS:ään liittyvissä pulmatilanteissa. Graafisesta suunnittelusta minulla ei ole paljoakaan kokemusta.
+  sekä erinomaiset tiedonhakutaidot CSS:ään liittyvissä pulmatilanteissa. Graafisesta suunnittelusta minulla ei kuitenkaan ole juuri kokemusta.
 expert: Taitaja
 findMeOn:  Löydä minut myös näistä
 finland: Suomi
 fullStackDeveloper: Full Stack -kehittäjä
+gitDesc: >
+  Käytän Gitiä työssäni päivittäin ja lisäksi olen käynyt siihen liittyvän kurssin yliopistossa. Taidan hyvin perustoiminnot, kuten push ja pull, sekä haarojen hallinnan, mutta
+  edistyksellisemmät toiminnot ovat minulle melko vieraita.
 htmlDesc: >
   Nykyinen työskentelykieleni. Olen käyttänyt HTML:ää työssäni viimeiset kolme vuotta sekä yliopisto-opinnoissani vielä pidempään. Minulla on vahva ohjelmointirutiini
   sekä erinomaiset tiedonhakutaidot HTML:ään liittyvissä pulmatilanteissa.
+javaDesc: >
+  Ensimmäinen oppimani ohjelmointikieli vuonna 2016! Suoritin yliopistossa useita perustason Java-kursseja, joihin kuului myös projektitöitä. Työelämässäni en ole kuitenkaan
+  sittemmin ollut kielen kanssa tekemisissä.
 javascriptDesc: >
   Nykyinen työskentelykieleni, jota olen käyttänyt lähes päivittäin viimeisen kolmen vuoden ajan. Olen toteuttanut isoja tosielämän projekteja sekä hyödyntänyt
   useita Javascript-kirjastoja, kuten Leaflet.js ja MapLibre.js. Minulla on vahva ohjelmointirutiini sekä erinomaiset tiedonhakutaidot Javascriptiin liittyvissä pulmatilanteissa.
 level: Taso
 links: Linkkejä
+linuxDesc: >
+  Olen jonkin verran törmännyt Linuxiin niin töissä kuin opinnoissanikin. Peruskäyttö on onnistunut, mutta perusteellisemmasta käytöstä minulle ei ole kertynyt kokemusta.
 location: Sijainti
 mainPage: Etusivu
 mouseOver: Vie hiiri päälle tai klikkaa (mobiililaitteella) lukeaksesi lisätietoja kokemuksestani kussakin taidossa.
+mySQLDesc: >
+  Olen toisinaan töissä joutunut toteuttamaan MySQL-kyselyitä, mistä olen kerryttänyt kokemusta. Olen käynyt myös pari SQL-kurssia yliopistossa. Hallitsen
+  peruskyselyt ja syntaksin hyvin, mutta monimutkaisemmat kyselyt ja esimerkiksi liitokset ovat toisinaan haastavia.
 name: Nimi
 novice: Noviisi
 nuxtDesc: >
@@ -36,6 +55,9 @@ nuxtDesc: >
   ja jopa tämä sivu on luotu Nuxt 3:lla!
 oulu: Oulu, Suomi
 ouluDesc: Asuinkaupunkini vuodesta 2023 lähtien.
+phpDesc: >
+  Koodaan toisinaan PHP:llä sekä luen valmista koodia töissäni, ja lisäksi olen toteuttanut yliopistossa pienimuotoisen PHP:tä sivuavan projektin.
+  Koska en kuitenkaan ole sen enempää opiskellut PHP:tä, teoreettinen tietämykseni voisi olla vahvempaakin.
 prague: Praha, Tšekki
 pragueDesc: Asuinkaupunkini vuonna 2022. Työskentelin paikallisessa yrityksessä ja kerrytin samalla taitojani toimia monikulttuurisessa ympäristössä.
 proficient: Pätevä
@@ -43,6 +65,13 @@ pythonAssignments: Python-tehtäviä
 pythonDesc: >
   Eniten käyttämäni ohjelmointikieli datatieteen opinnoissani yliopistossa. Minulla on monipuolinen kokemus erilaisista kirjastoista, kuten pandas, scikit-learn sekä
   PyTorch Geometric, ja toteutin myös Pro Gradu -projektini Pythonilla. Minulle on kertynyt myös työkokemusta Pythonista noin kaksi vuotta.
+rDesc: >
+  Käytin pääasiallisesti R:ää suorittaessani tilastotieteen kandidaatin tutkintoa, ja toteutin myös kandidaatintutkielmani R:llä. Kuitenkaan
+  sen jälkeen en ole juurikaan ollut tämän kielen kanssa tekemisissä.
+restAPIDesc: >
+  Olen itseoppinut REST API:n peruskäytön töideni myötä. Hallitsen hyvin peruskäytön, mutta syvällisempi teoreettinen tietämykseni on aavistuksen vajavaista.
+scalaDesc: >
+  Suoritin yliopistossa hyvin arvosanoin yhden alkeistason Scala-kurssin ja kiinnostuin sen yksinkertaisuudesta. Sittemmin en kuitenkaan ole kieltä käyttänyt.
 skills: Taidot
 sortBy: Järjestä
 suonenjoki: Suonenjoki, Suomi
@@ -50,6 +79,9 @@ suonenjokiDesc: Synnyinkaupunkini, jossa asuin ja kävin peruskoulun sekä lukio
 tampere: Tampere, Suomi
 tampereDesc: Asuinkaupunkini vuosina 2016–2022. Suoritin kandidaatin ja maisterin tutkinnot Tampereen yliopistossa.
 thesis: "Pro Gradu -tutkielma: Predicting the Building Envelope in BIM Models Using Graph Convolutional Neural Networks (2022)"
+typescriptDesc: >
+  Nykyinen työskentelykieleni, jota olen käyttänyt noin puolitoista vuotta. Olen pitkälti itseoppinut kielen työn myötä, hallitsen hyvin perustyypit ja olen toteuttanut
+  projekteja Typescriptillä. Erikoisemmat tyypitykset voivat kuitenkin toisinaan aiheuttaa päänvaivaa.
 vueDesc: >
   Eniten käyttämäni viitekehykseni HTML-, CSS- ja Javascript-pohjaisten käyttöliittymien luomiseen, jota myös Nuxt.js käyttää. Viimeisen kolmen vuoden aikana olen hankkinut
   vahvan ohjelmointirutiinin sekä erinomaiset tiedonhakutaidot Vueen liittyvissä pulmatilanteissa.

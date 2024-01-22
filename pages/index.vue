@@ -16,19 +16,20 @@
                     {name: 'HTML', level: 5, description: 'htmlDesc'},
                     {name: 'Nuxt.js', level: 5, description: 'nuxtDesc'},
                     {name: 'Vue.js', level: 5, description: 'vueDesc'},
-                    {name: 'Typescript', level: 4, description: ""},
+                    {name: 'Typescript', level: 4, description: "typescriptDesc"},
                     {name: 'Python', level: 5, description: 'pythonDesc'},
                     {name: 'CSS', level: 4, description: 'cssDesc'},
-                    {name: 'MySQL', level: 4, description: ""},
-                    {name: 'PHP', level: 3, description: ""},
-                    {name: 'R', level: 3, description: ""},
-                    {name: 'Git', level: 3, description: ""},
-                    {name: 'REST API', level: 3, description: ""},
-                    {name: 'Azure', level: 2, description: ""},
-                    {name: 'Java', level: 2, description: ""},
-                    {name: 'Scala', level: 1, description: ""},
-                    {name: 'C', level: 1, description: ""},
-                    {name: 'Linux', level: 2, description: ""},
+                    {name: 'MySQL', level: 4, description: "mySQLDesc"},
+                    {name: 'PHP', level: 3, description: "phpDesc"},
+                    {name: 'R', level: 3, description: "rDesc"},
+                    {name: 'Git', level: 3, description: "gitDesc"},
+                    {name: 'REST API', level: 3, description: "restAPIDesc"},
+                    {name: 'Azure', level: 2, description: "azureDesc"},
+                    {name: 'Java', level: 2, description: "javaDesc"},
+                    {name: 'Scala', level: 1, description: "scalaDesc"},
+                    {name: 'C', level: 1, description: "cDesc"},
+                    {name: 'Linux', level: 2, description: "linuxDesc"},
+                    {name: 'Angular', level: 2, description: "angularDesc"},
                 ] as Skill[],
                 sortSkillsBy: 'level' as string,
                 location: {} as {title?: string, desc?: string}
@@ -40,13 +41,13 @@
             }
         },
         mounted() {
-            window.addEventListener('resize', this._toggleTitleVisibility);
+            window.addEventListener('resize', this._onResize);
             this._toggleTitleVisibility();
             this.skills.sort(this._sortSkills);
             this.$nextTick(this._fitHeight);
         },
         unmounted() {
-            window.removeEventListener('resize', this._toggleTitleVisibility);
+            window.removeEventListener('resize', this._onResize);
         },
         methods: {
             _fitHeight: function() {
@@ -93,6 +94,10 @@
             _footerNavClick: function(tab: number) {
                 this.selectedTab = tab;
                 window.scrollTo(0,0);
+            },
+            _onResize: function() {
+                this._toggleTitleVisibility();
+                this._fitHeight();
             },
             _toggleTitleVisibility: function() {
                 const element = this.$refs['title-container'] as HTMLElement;
@@ -172,7 +177,6 @@
                 <template v-else-if="index===1">
                     <div class="tab-content">
                         <h2> {{ $t(tab) }}</h2>
-                        <span class="material-icons between-p"> lightbulb </span>
                         <p> 
                             {{ $t('mouseOver') }}
                             <div id="sort-skills-container">
@@ -193,6 +197,7 @@
                 <template v-else-if="index===2">
                     <div class="tab-content">
                         <h2> {{ $t(tab) }} </h2>
+                        <p>{{ $t('clickLocation') }}</p>
                         <map-libre @marker-click="location=$event"></map-libre>
 
                         <h2 v-if="location.title">{{ $t(location.title) }}</h2>
@@ -449,7 +454,7 @@
         object-fit: cover;
     }
     div#programming-lang-icons > img {
-        width: 10%;
+        width: 10vw;
         padding: 1%;
     }
     a.fa-github {
