@@ -8,7 +8,7 @@
     export default {
         data() {
             return {
-                tabs: ['mainPage', 'skills', 'location'] as string[],
+                tabs: ['mainPage', 'skills', 'more'] as string[],
                 selectedTab: 0 as number,
                 hideMenu: true as boolean,
                 skills: [
@@ -200,11 +200,11 @@
                 </template>
                 <template v-else-if="index===2">
                     <div class="tab-content">
-                        <h2> {{ $t(tab) }} </h2>
+                        <h2> {{ $t('location') }} </h2>
                         <p>{{ $t('clickLocation') }}</p>
                         <map-libre @marker-click="_onMarkerClick"></map-libre>
 
-                        <h2 v-if="location.title">{{ $t(location.title) }}</h2>
+                        <h3 v-if="location.title">{{ $t(location.title) }}</h3>
                         <p v-if="location.desc"> {{ $t(location.desc) }}</p>
                     </div>
                     <span class="material-icons between-p"> lightbulb </span>
@@ -501,6 +501,9 @@
     }
     #flag-counter img {
         max-width: 100%;
+    }
+    .hidden {
+        visibility: hidden;
     }
     @media (min-width: 640px) {
         div#frontpage-header h1 {
