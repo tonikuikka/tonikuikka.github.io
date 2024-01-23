@@ -115,6 +115,10 @@
                 const bSortBy = b[this.sortSkillsBy as keyof Skill];
                 const sortValue =  aSortBy > bSortBy ? 1 : bSortBy > aSortBy ? -1 : 0;
                 return sortValue*(this.sortSkillsBy === 'level' ? -1 : 1);
+            },
+            _onMarkerClick: function(marker: { [key: string]: any}) {
+                this.location = marker;
+                this.$nextTick(this._fitHeight);
             }
         }
     }
@@ -198,7 +202,7 @@
                     <div class="tab-content">
                         <h2> {{ $t(tab) }} </h2>
                         <p>{{ $t('clickLocation') }}</p>
-                        <map-libre @marker-click="location=$event"></map-libre>
+                        <map-libre @marker-click="_onMarkerClick"></map-libre>
 
                         <h2 v-if="location.title">{{ $t(location.title) }}</h2>
                         <p v-if="location.desc"> {{ $t(location.desc) }}</p>
