@@ -5,7 +5,7 @@ aboutMe: >
   always up to employ my expertise to create something awesome.
 aboutPage: >
   On this page, you can find a summary of my skills. Everything is implemented by me using Nuxt.js and Typescript. In addition, the page is hosted by GitHub
-  Pages and the repository of the project is reachable from the link below. For detailed information, do not hesitate to contact me e.g. via social media.
+  Pages and the repository of the project is reachable from the link in this page. For detailed information, do not hesitate to contact me e.g. via social media.
 advancedBeginner: Advanced Beginner
 angularDesc: >
   I have come across Angular often at my work, for example when translating code from Angular to Vue. I understand the syntax fluently,
@@ -16,7 +16,7 @@ azureDesc: >
 brno: Brno, Czechia
 brnoDesc: The city where I spent an exchange period in 2020. I studied for six months at Masaryk University in the Faculty of Informatics.
 cDesc: >
-  I completed one entry-level C course at the university, getting a touch of things such as memory allocation. Otherwise, however, I haven't worked with this language.
+  I completed one entry-level C course at the university, getting a touch of things such as memory allocation. Otherwise, however, I have not worked with this language.
 clickLocation: Click on the marker on the map to read more about my relationship with the location!
 competent: Competent
 cssDesc: >
@@ -27,7 +27,7 @@ findMeOn: Find me also on
 finland: Finland
 fullStackDeveloper: Full Stack Developer
 gitDesc: >
-  I use Git in my daily and I have also completed a course related to it at university. I know well the basic functions like push and pull as well as branch management,
+  I use Git almost daily and I have also completed a course related to it at university. I know well the basic functions like push and pull as well as branch management,
   but the more advanced tools are still slightly unfamiliar to me.
 gitHub: GitHub repository
 htmlDesc: >
@@ -50,7 +50,7 @@ more: More
 mouseOver: Click on the skill to read more about my experience with it.
 mySQLDesc: >
   At work, I have sometimes had to implement MySQL queries, which I have gained experience from. I have also taken a couple of SQL courses at university.
-  I can handle basic queries and syntax well, but more complex queries and for example joins are sometimes challenging.
+  I can handle basic queries and syntax well, but more complex queries and, for example, joins are sometimes challenging.
 name: Name
 novice: Novice
 nuxtDesc: >
@@ -60,7 +60,7 @@ oulu: Oulu, Finland
 ouluDesc: My city of residence since 2023.
 phpDesc: >
   I sometimes code with PHP and read ready-made code at work. In addition, I have implemented a small-scale PHP-related project at the university.
-  However, since I haven't studied PHP any further, my theoretical knowledge could be stronger.
+  However, since I have not studied PHP any further, my theoretical knowledge could be stronger.
 prague: Prague, Czechia
 pragueDesc: My city of residence in 2022. I worked in a local company, gaining skills to work in a multicultural environment.
 proficient: Proficient
@@ -75,7 +75,7 @@ restAPIDesc: >
   I have self-taught the basic use of the REST API through my work. I have fine experience in basic usage, but my deeper theoretical knowledge is somewhat lacking.
 scalaDesc: >
   At the university, I completed one beginner-level Scala course with good grades and became particularly interested in its simplicity.
-  However, I haven't used the language since then.
+  However, I have not used the language since then.
 skills: Skills
 sortBy: Sort by
 suonenjoki: Suonenjoki, Finland

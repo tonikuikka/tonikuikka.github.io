@@ -72,7 +72,6 @@
                     left: (container.scrollWidth / this.tabs.length) * this.selectedTab,
                     behavior: 'smooth' as ScrollBehavior
                 });
-                this._resetSelectedSkill();
             },
             onScrollEnd: function() {
                 const container = this.$refs['page-content'] as HTMLElement;
@@ -84,6 +83,7 @@
                     this.selectedTab = index;
                 }
                 this.$nextTick(this._fitHeight);
+                this._resetSelectedSkill();
 			},
             _onNavigatorEvent: function(event: {type: string, index?: number, lang?: string},
             options: {[key: string]: any} = {}) {
@@ -248,18 +248,10 @@
             </div>
         </div>
         <footer>
-            <div id="footer-h-container">
-                <div>
-                    <h2>
-                        <p class="page-title">Toni Kuikka</p>
-                    </h2>
-                </div>
-                <div>
-                    <a href="https://github.com/tonikuikka/tonikuikka.github.io"
-                    target="_blank">
-                        github.com/tonikuikka/tonikuikka.github.io
-                    </a>
-                </div>
+            <div>
+                <h2>
+                    <p class="page-title">Toni Kuikka</p>
+                </h2>
             </div>
             <div>
                 <ul id="footer-nav">
@@ -417,16 +409,9 @@
         text-align: center;
         margin: 5px 2px;
     }
-    div#social-media,
-    div#footer-h-container {
+    div#social-media {
         display: flex;
         flex-direction: column;
-    }
-    div#footer-h-container .page-title {
-        margin-bottom: 0;
-    }
-    div#footer-h-container a {
-        font-size: 75%;
     }
     div#social-media a.fa {
         font-size: 30px;
