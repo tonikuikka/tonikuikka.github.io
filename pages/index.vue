@@ -31,6 +31,7 @@
                     {name: 'Linux', level: 2, description: "linuxDesc"},
                     {name: 'Angular', level: 2, description: "angularDesc"},
                 ] as Skill[],
+                selectedSkill: null as Skill | null,
                 sortSkillsBy: 'level' as string,
                 location: {} as {title?: string, desc?: string}
             }
@@ -42,12 +43,16 @@
         },
         mounted() {
             window.addEventListener('resize', this._onResize);
+            document.addEventListener('click', this._resetSelectedSkill);
+            document.addEventListener('scroll', this._resetSelectedSkill);
             this._toggleTitleVisibility();
             this.skills.sort(this._sortSkills);
             this.$nextTick(this._fitHeight);
         },
         unmounted() {
             window.removeEventListener('resize', this._onResize);
+            document.removeEventListener('click', this._resetSelectedSkill);
+            document.removeEventListener('scroll', this._resetSelectedSkill);
         },
         methods: {
             _fitHeight: function() {
@@ -115,6 +120,9 @@
                 const bSortBy = b[this.sortSkillsBy as keyof Skill];
                 const sortValue =  aSortBy > bSortBy ? 1 : bSortBy > aSortBy ? -1 : 0;
                 return sortValue*(this.sortSkillsBy === 'level' ? -1 : 1);
+            },
+            _resetSelectedSkill: function() {
+                this.selectedSkill = null;
             },
             _onMarkerClick: function(marker: { [key: string]: any}) {
                 this.location = marker;
@@ -193,7 +201,8 @@
                                 </select>
                             </div>
                             <div v-for="skill of skills">
-                                <skill-bar :skill="skill"></skill-bar>
+                                <skill-bar :skill="skill" :showTooltip="skill===selectedSkill"
+                                @skill-click="selectedSkill=skill"></skill-bar>
                             </div>
                         </p>
                     </div>
@@ -221,6 +230,11 @@
                                     {{ $t('pythonAssignments') }}
                                 </a>
                             </li>
+                            <li>
+                                <a href="https://github.com/tonikuikka/tonikuikka.github.io" target="_blank">
+                                    {{ $t('gitHub') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -234,9 +248,17 @@
         </div>
         <footer>
             <div id="footer-h-container">
-                <h2>
-                    <p class="page-title">Toni Kuikka</p>
-                </h2>
+                <div>
+                    <h2>
+                        <p class="page-title">Toni Kuikka</p>
+                    </h2>
+                </div>
+                <div>
+                    <a href="https://github.com/tonikuikka/tonikuikka.github.io"
+                    target="_blank">
+                        github.com/tonikuikka/tonikuikka.github.io
+                    </a>
+                </div>
             </div>
             <div>
                 <ul id="footer-nav">
@@ -369,11 +391,11 @@
         justify-content: center;
     }
     ul {
-        list-style-type: none;
         padding: 0;
     }
     ul#footer-nav {
-        text-align: center;  
+        text-align: center;
+        list-style-type: none;
     }
     footer button {
         background: none;
@@ -394,9 +416,16 @@
         text-align: center;
         margin: 5px 2px;
     }
-    div#social-media {
+    div#social-media,
+    div#footer-h-container {
         display: flex;
         flex-direction: column;
+    }
+    div#footer-h-container .page-title {
+        margin-bottom: 0;
+    }
+    div#footer-h-container a {
+        font-size: 75%;
     }
     div#social-media a.fa {
         font-size: 30px;

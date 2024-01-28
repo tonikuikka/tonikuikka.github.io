@@ -5,7 +5,7 @@ aboutMe: >
   always up to employ my expertise to create something awesome.
 aboutPage: >
   On this page, you can find a summary of my skills. Everything is implemented by me using Nuxt.js and Typescript. In addition, the page is hosted by GitHub
-  Pages and the repository of the project is reachable from the link above. For detailed information, do not hesitate to contact me e.g. via social media.
+  Pages and the repository of the project is reachable from the link below. For detailed information, do not hesitate to contact me e.g. via social media.
 advancedBeginner: Advanced Beginner
 angularDesc: >
   I have come across Angular often at my work, for example when translating code from Angular to Vue. I understand the syntax fluently,
@@ -29,6 +29,7 @@ fullStackDeveloper: Full Stack Developer
 gitDesc: >
   I use Git in my daily and I have also completed a course related to it at university. I know well the basic functions like push and pull as well as branch management,
   but the more advanced tools are still slightly unfamiliar to me.
+gitHub: GitHub repository
 htmlDesc: >
   My current working language. I have been employing HTML at work for the last three years as well as through my studies at the university for an even longer time.
   I have a strong programming routine as well as excellent information-seeking skills for HTML-related problems.
@@ -46,7 +47,7 @@ linuxDesc: >
 location: Location
 mainPage: Home
 more: More
-mouseOver: Hover over or click (on mobile) to read more about my experience with each skill.
+mouseOver: Click on the skill to read more about my experience with it.
 mySQLDesc: >
   At work, I have sometimes had to implement MySQL queries, which I have gained experience from. I have also taken a couple of SQL courses at university.
   I can handle basic queries and syntax well, but more complex queries and for example joins are sometimes challenging.

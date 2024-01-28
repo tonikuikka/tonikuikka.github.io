@@ -5,7 +5,7 @@ aboutMe: >
   valmis käyttämään asiantuntemustani luodakseni jotain mahtavaa.
 aboutPage: >
   Tältä sivulta löytyy yhteenveto osaamisestani. Olen toteuttanut kaiken itse Nuxt.js:llä ja Typescriptillä. Lisäksi sivu pyörii GitHub Pages -palvelimella, ja
-  koko projektin tietovarastoon pääsee yläpuolelta löytyvästä linkistä. Yksityiskohtaisempia tietoja minulta voi kysellä esimerkiksi sosiaalisen median kautta.
+  koko projektin tietovarastoon pääsee alapuolelta löytyvästä linkistä. Yksityiskohtaisempia tietoja minulta voi kysellä esimerkiksi sosiaalisen median kautta.
 advancedBeginner: Edistynyt
 angularDesc: >
   Olen törmännyt Angulariin usein töideni yhteydessä, esimerkiksi kääntäessäni koodia Angularilta Vuelle. Ymmärrän syntaksia sujuvasti, mutta varsinaisia omia projekteja
@@ -29,6 +29,7 @@ fullStackDeveloper: Full Stack -kehittäjä
 gitDesc: >
   Käytän Gitiä työssäni päivittäin ja lisäksi olen käynyt siihen liittyvän kurssin yliopistossa. Taidan hyvin perustoiminnot, kuten push ja pull, sekä haarojen hallinnan, mutta
   edistyksellisemmät toiminnot ovat minulle melko vieraita.
+gitHub: GitHub-tietovarasto
 htmlDesc: >
   Nykyinen työskentelykieleni. Olen käyttänyt HTML:ää työssäni viimeiset kolme vuotta sekä yliopisto-opinnoissani vielä pidempään. Minulla on vahva ohjelmointirutiini
   sekä erinomaiset tiedonhakutaidot HTML:ään liittyvissä pulmatilanteissa.
@@ -45,7 +46,7 @@ linuxDesc: >
 location: Sijainti
 mainPage: Etusivu
 more: Lisää
-mouseOver: Vie hiiri päälle tai klikkaa (mobiililaitteella) lukeaksesi lisätietoja kokemuksestani kussakin taidossa.
+mouseOver: Klikkaa taitoa lukeaksesi lisätietoja kokemuksestani sen suhteen.
 mySQLDesc: >
   Olen toisinaan töissä joutunut toteuttamaan MySQL-kyselyitä, mistä olen kerryttänyt kokemusta. Olen käynyt myös pari SQL-kurssia yliopistossa. Hallitsen
   peruskyselyt ja syntaksin hyvin, mutta monimutkaisemmat kyselyt ja esimerkiksi liitokset ovat toisinaan haastavia.

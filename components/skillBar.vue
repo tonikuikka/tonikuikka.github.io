@@ -2,9 +2,10 @@
 	export default {
         data() {
             return {
-                tooltip: {
-                    left: '-999999px' as string,
-                    top: '-999999px' as string
+                tooltip: null as HTMLElement | null,
+                tooltipPosition: {
+                    left: '0px' as string,
+                    top: '0px' as string
                 }
             }
         },
@@ -12,7 +13,30 @@
             skill: {
                 type: Object,
                 required: true
+            },
+            showTooltip: {
+                type: Boolean,
+                default: false
             }
+        },
+        emits: ['skillClick'],
+        watch: {
+            showTooltip: function(show: boolean) {
+                if (!this.tooltip) return;
+
+                if (show) {
+                    this.tooltip.style.setProperty("visibility", "visible");
+                    setTimeout(() => {
+                        (this.tooltip as HTMLElement).style.setProperty("opacity", "1");
+                    }, 300);
+                } else {
+                    this.tooltip.style.setProperty("visibility", "hidden");
+                    this.tooltip.style.setProperty("opacity", "0");
+                }
+            }
+        },
+        mounted() {
+            this.tooltip = this.$refs['tooltip'] as HTMLElement;
         },
         methods: {
             _getClass: function(level: number) {
@@ -29,46 +53,42 @@
                         return 'expert';
                 }
             },
-            _showTooltip: function(event: MouseEvent) {
-                const tooltip = this.$refs['tooltip'] as HTMLElement;
-                if (!tooltip) return;
-                const width = tooltip.offsetWidth;
-                const height = tooltip.offsetHeight;
+            _updateTooltipPosition: function(event: MouseEvent) {
+                if (!this.tooltip) return;
+                const width = this.tooltip.offsetWidth;
+                const height = this.tooltip.offsetHeight;
                 const clientX = event.clientX;
                 const clientY = event.clientY;
 
                 if (width+clientX > (window.innerWidth || document.documentElement.clientWidth)) {
-                    this.tooltip.left = `${clientX-width >= 0 ? clientX-width : 0}px`;
+                    this.tooltipPosition.left = `${clientX-width >= 0 ? clientX-width : 0}px`;
                 } else {
-                    this.tooltip.left = `${clientX}px`;
+                    this.tooltipPosition.left = `${clientX}px`;
                 }
                 if (height+clientY > (window.innerHeight || document.documentElement.clientHeight)) {
-                    this.tooltip.top = `${clientY-height >= 0 ? clientY-height : 0}px`;
+                    this.tooltipPosition.top = `${clientY-height >= 0 ? clientY-height : 0}px`;
                 } else {
-                    this.tooltip.top = `${clientY}px`;
+                    this.tooltipPosition.top = `${clientY}px`;
                 }
-            },
-            _hideTooltip: function() {
-                this.tooltip.left = '-999999px';
-                this.tooltip.top = '-999999px';
+                this.$emit('skillClick');
+                event.stopPropagation();
             }
         }
 	}
 </script>
 
 <template>
-    <div class="skill-bar-container" ref="skill-bar" @mousemove="_showTooltip($event)"
-    @mouseleave="_hideTooltip()">
-        <div @click.prevent>
+    <div class="skill-bar-container" @click="_updateTooltipPosition">
+        <div>
             {{ skill.name }}
         </div>
         <div v-for="i in 5" :class="_getClass(skill.level), {'blank': i > skill.level }"
-        class="indicators" @click.prevent></div>
-        <div @click.prevent>
+        class="indicators"></div>
+        <div>
             {{ $t(_getClass(skill.level) as string) }}
         </div>
     </div>
-    <div class="tooltip" :style="tooltip" ref="tooltip">
+    <div class="tooltip" :style="tooltipPosition" ref="tooltip">
         <h2> {{ skill.name }}: {{ $t(_getClass(skill.level) as string) }} </h2>
         <p> {{ $t(skill.description) }} </p>
     </div>
@@ -124,8 +144,7 @@
         background-color: #9da1a6 !important;
     }
     .skill-bar-container:hover {
-        visibility: visible;
-        opacity: 1;
+        background: var(--footer);
     }
     div.tooltip {
         background-color: var(--accent2);
@@ -137,6 +156,9 @@
         z-index: 1;
         max-width: 300px;
         font-size: 75%;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.6s;
     }
     @media (min-width: 640px) {
         div.tooltip {
