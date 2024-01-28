@@ -72,6 +72,7 @@
                     left: (container.scrollWidth / this.tabs.length) * this.selectedTab,
                     behavior: 'smooth' as ScrollBehavior
                 });
+                this._resetSelectedSkill();
             },
             onScrollEnd: function() {
                 const container = this.$refs['page-content'] as HTMLElement;
