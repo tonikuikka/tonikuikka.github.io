@@ -20,7 +20,7 @@
                     {name: 'Python', level: 5, description: 'pythonDesc'},
                     {name: 'CSS', level: 4, description: 'cssDesc'},
                     {name: 'MySQL', level: 4, description: "mySQLDesc"},
-                    {name: 'PHP', level: 3, description: "phpDesc"},
+                    {name: 'PHP', level: 4, description: "phpDesc"},
                     {name: 'R', level: 3, description: "rDesc"},
                     {name: 'Git', level: 3, description: "gitDesc"},
                     {name: 'REST API', level: 3, description: "restAPIDesc"},
@@ -83,7 +83,6 @@
                     this.selectedTab = index;
                 }
                 this.$nextTick(this._fitHeight);
-                this._resetSelectedSkill();
 			},
             _onNavigatorEvent: function(event: {type: string, index?: number, lang?: string},
             options: {[key: string]: any} = {}) {
@@ -151,7 +150,7 @@
         <navigator :buttons="tabs" :selected="selectedTab" :direction="'column'"
         :hidden="hideMenu" @navigator-event="_onNavigatorEvent($event, {closeAfter: true})"
         class="mobile-only"></navigator>
-        <div id="page-content" ref="page-content" @scrollend="onScrollEnd">
+        <div id="page-content" ref="page-content" @scroll="_resetSelectedSkill" @scrollend="onScrollEnd">
             <div class="page-tab" v-for="(tab, index) in tabs" ref="page-tabs">
                 <template v-if="index===0">
                     <div id="frontpage-header">
